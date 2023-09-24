@@ -110,7 +110,10 @@
         "features": "Features",
         "listing-current-dates-list": "Listing current dates : list",
         "deletion-of-dates-delete": "Deletion of dates: delete",
-        "editing-your-profile-editp": "Editing your profile editP"
+        "editing-your-profile-editp": "Editing your profile editP",
+        "creation-of-new-date": "Creation of new date",
+        "random-date-generator": "Random Date Generator",
+        "filter-by-metric": "Filter by Metric"
       },
       "headingKeywords": {}
     },
