@@ -11,7 +11,7 @@
         "jane-doe": "Jane Doe",
         "johnny-doe": "Johnny Doe",
         "jean-doe": "Jean Doe",
-        "james-doe": "James Doe"
+        "shishir-bychapur": "Shishir Bychapur"
       },
       "headingKeywords": {}
     },
@@ -107,11 +107,13 @@
       "src": "UGDraft.md",
       "headings": {
         "lovebook-user-guide-draft": "LoveBook User Guide Draft",
+        "wireframes": "Wireframes",
         "features": "Features",
         "listing-current-dates-list": "Listing current dates : list",
         "deletion-of-dates-delete": "Deletion of dates: delete",
         "editing-your-profile-editp": "Editing your profile editP",
         "creation-of-new-date": "Creation of new date",
+        "edit-existing-dates": "Edit existing dates",
         "random-date-generator": "Random Date Generator",
         "filter-by-metric": "Filter by Metric"
       },
@@ -151,9 +153,16 @@
     },
     {
       "src": "team/johndoe.md",
-      "title": "John Doe's Project Portfolio Page",
       "headings": {
-        "project-addressbook-level-3": "Project: AddressBook Level 3"
+        "project-lovebook": "Project: LoveBook"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/shishirbychapur.md",
+      "title": "Shishir Bychapur's Project Portfolio Page",
+      "headings": {
+        "project-lovebook": "Project: LoveBook"
       },
       "headingKeywords": {}
     },
