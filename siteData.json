@@ -8,7 +8,7 @@
         "about-us": "About Us",
         "project-team": "Project team",
         "john-doe": "John Doe",
-        "jane-doe": "Jane Doe",
+        "goh-en-rui-ryann": "Goh En Rui Ryann",
         "johnny-doe": "Johnny Doe",
         "jean-doe": "Jean Doe",
         "shishir-bychapur": "Shishir Bychapur"
@@ -148,6 +148,14 @@
       "title": "",
       "headings": {
         "addressbook-level-3": "AddressBook Level-3"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/gohenruiryann.md",
+      "title": "Ryann's Project Portfolio Page",
+      "headings": {
+        "project-lovebook": "Project: LoveBook"
       },
       "headingKeywords": {}
     },
