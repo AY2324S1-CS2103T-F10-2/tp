@@ -7,12 +7,11 @@
       "headings": {
         "about-us": "About Us",
         "project-team": "Project team",
-        "john-doe": "John Doe",
         "goh-en-rui-ryann": "Goh En Rui Ryann",
-        "johnny-doe": "Johnny Doe",
         "lynn-low": "Lynn Low",
         "shishir-bychapur": "Shishir Bychapur",
-        "lee-seng-kitt": "Lee Seng Kitt"
+        "lee-seng-kitt": "Lee Seng Kitt",
+        "cleon-tan-de-xuan": "Cleon Tan De Xuan"
       },
       "headingKeywords": {}
     },
@@ -149,6 +148,15 @@
       "title": "",
       "headings": {
         "addressbook-level-3": "AddressBook Level-3"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/cleontandexuan.md",
+      "title": "Cleon's Project Portfolio Page",
+      "headings": {
+        "cleon-s-portfolio-page": "Cleon's Portfolio Page",
+        "project-lovebook": "Project: LoveBook"
       },
       "headingKeywords": {}
     },
