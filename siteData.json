@@ -40,7 +40,7 @@
       "src": "DeveloperGuide.md",
       "title": "Developer Guide",
       "headings": {
-        "ab-3-developer-guide": "AB-3 Developer Guide",
+        "lovebook-developer-guide": "LoveBook Developer Guide",
         "acknowledgements": "Acknowledgements",
         "setting-up-getting-started": "Setting up, getting started",
         "design": "Design",
@@ -124,7 +124,8 @@
       "headings": {
         "lovebook-user-guide-draft": "LoveBook User Guide Draft",
         "wireframes": "Wireframes",
-        "features": "Features",
+        "1-quick-start-ryann": "1 Quick start (Ryann)",
+        "2-features": "2 Features",
         "listing-current-dates-list": "Listing current dates : list",
         "deletion-of-dates-delete": "Deletion of dates: delete",
         "editing-your-profile-editp": "Editing your profile editP",
@@ -133,7 +134,17 @@
         "random-date-generator": "Random Date Generator",
         "filter-by-metric": "Filter by Metric",
         "getting-a-recommended-date-match": "Getting a recommended date: match",
-        "setting-the-matching-algorithm-setpreference": "Setting the matching algorithm: setPreference"
+        "setting-the-matching-algorithm-setpreference": "Setting the matching algorithm: setPreference",
+        "3-use-cases": "3 Use Cases",
+        "non-functional-requirements-ryann": "Non-Functional Requirements (Ryann)",
+        "usability-and-accessibility": "Usability and Accessibility:",
+        "scalability": "Scalability:",
+        "reliability-and-availability": "Reliability and Availability:",
+        "portability": "Portability:",
+        "3-faq-ryann": "3 FAQ (Ryann)",
+        "4-summary": "4 Summary",
+        "5-glossary": "5 Glossary",
+        "mainstream-os-windows-linux-unix-os-x": "Mainstream OS: Windows, Linux, Unix, OS-X."
       },
       "headingKeywords": {}
     },
