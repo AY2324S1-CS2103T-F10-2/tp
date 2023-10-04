@@ -161,15 +161,6 @@
       "headingKeywords": {}
     },
     {
-      "src": "team/gohenruiryann.md",
-      "title": "Ryann's Project Portfolio Page",
-      "headings": {
-        "ryann-s-portfolio-page": "Ryann's Portfolio Page",
-        "project-lovebook": "Project: LoveBook"
-      },
-      "headingKeywords": {}
-    },
-    {
       "src": "team/johndoe.md",
       "headings": {
         "project-lovebook": "Project: LoveBook"
@@ -181,6 +172,15 @@
       "title": "Lynn's Project Portfolio Page",
       "headings": {
         "lynn-s-portfolio-page": "Lynn's Portfolio Page",
+        "project-lovebook": "Project: LoveBook"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/ryamgoh.md",
+      "title": "Ryann's Project Portfolio Page",
+      "headings": {
+        "ryann-s-portfolio-page": "Ryann's Portfolio Page",
         "project-lovebook": "Project: LoveBook"
       },
       "headingKeywords": {}
