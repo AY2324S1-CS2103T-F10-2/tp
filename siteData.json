@@ -40,7 +40,7 @@
       "src": "DeveloperGuide.md",
       "title": "Developer Guide",
       "headings": {
-        "ab-3-developer-guide": "AB-3 Developer Guide",
+        "lovebook-developer-guide": "LoveBook Developer Guide",
         "acknowledgements": "Acknowledgements",
         "setting-up-getting-started": "Setting up, getting started",
         "design": "Design",
@@ -157,7 +157,7 @@
       "headingKeywords": {}
     },
     {
-      "src": "team/cleontandexuan.md",
+      "src": "team/Cleon2.md",
       "title": "Cleon's Project Portfolio Page",
       "headings": {
         "cleon-s-portfolio-page": "Cleon's Portfolio Page",
