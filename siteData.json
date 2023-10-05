@@ -157,19 +157,19 @@
       "headingKeywords": {}
     },
     {
-      "src": "team/Cleon2.md",
-      "title": "Cleon's Project Portfolio Page",
+      "src": "team/bobscodedump.md",
+      "title": "Seng Kitt's Project Portfolio Page",
       "headings": {
-        "cleon-s-project-portfolio-page": "Cleon's Project Portfolio Page",
+        "seng-kitt-s-project-portfolio-page": "Seng Kitt's Project Portfolio Page",
         "project-lovebook": "Project: LoveBook"
       },
       "headingKeywords": {}
     },
     {
-      "src": "team/bobscodedump.md",
-      "title": "Seng Kitt's Project Portfolio Page",
+      "src": "team/cleon2.md",
+      "title": "Cleon's Project Portfolio Page",
       "headings": {
-        "seng-kitt-s-project-portfolio-page": "Seng Kitt's Project Portfolio Page",
+        "cleon-s-project-portfolio-page": "Cleon's Project Portfolio Page",
         "project-lovebook": "Project: LoveBook"
       },
       "headingKeywords": {}
