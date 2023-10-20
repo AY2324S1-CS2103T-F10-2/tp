@@ -133,6 +133,7 @@
         "edit-existing-dates": "Edit existing dates",
         "random-date-generator": "Random Date Generator",
         "filter-by-metric": "Filter by Metric",
+        "sorting-list-of-dates-by-metric": "Sorting list of dates by Metric",
         "getting-a-recommended-date-match": "Getting a recommended date: match",
         "setting-the-matching-algorithm-setpreference": "Setting the matching algorithm: setPreference",
         "3-use-cases": "3 Use Cases",
