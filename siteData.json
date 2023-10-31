@@ -54,6 +54,7 @@
         "implementation": "Implementation",
         "filter-dates": "Filter dates",
         "sort-dates": "Sort dates",
+        "get-random-date": "Get random Date",
         "get-best-match": "Get best match",
         "star-dates": "Star dates",
         "unstar-dates": "Unstar dates",
