@@ -215,7 +215,7 @@ with(this){return _c('p',[_v("The unstar feature is implemented using the "),_c(
 with(this){return _c('p',[_v("The "),_c('em',[_v("Activity")]),_v(" diagram summarises what happens after the user enters a star command.")])}
 },function anonymous(
 ) {
-with(this){return _c('p',[_v("The "),_c('em',[_v("Sequence")]),_v(" Diagram below shows how the components interact with each other for the scenario where the user issues\nthe command "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("star 1")])])}
+with(this){return _c('p',[_v("The "),_c('em',[_v("Sequence")]),_v(" Diagram below shows how the components interact with each other for the scenario where the user issues\nthe command "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("unstar 1")])])}
 },function anonymous(
 ) {
 with(this){return _c('h2',{attrs:{"id":"documentation-logging-testing-configuration-dev-ops"}},[_c('strong',[_v("Documentation, logging, testing, configuration, dev-ops")]),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#documentation-logging-testing-configuration-dev-ops","onclick":"event.stopPropagation()"}})])}
@@ -470,6 +470,6 @@ with(this){return _c('h3',{attrs:{"id":"saving"}},[_v("Saving"),_c('a',{staticCl
 with(this){return _c('ol',[_c('li',[_c('p',[_v("Saving window preferences")]),_v(" "),_c('ul',[_c('li',[_v("Resize the window to an optimum size, preferably full screen. Close the window.")]),_v(" "),_c('li',[_v("Re-launch the app by double-clicking the jar file.")]),_v(" "),_c('li',[_v("Expected: The most recent window size and location is retained.")]),_v(" "),_c('li',[_v("Note: The window looks best under 1920 x 1080 resolution, 125% scale.")])])]),_v(" "),_c('li',[_c('p',[_v("Saving data")]),_v(" "),_c('ul',[_c('li',[_v("Launch the app by double-clicking the jar file.")]),_v(" "),_c('li',[_v("Execute an add command to add a "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("Date")]),_v(" in the database.")]),_v(" "),_c('li',[_v("Close the app.")]),_v(" "),_c('li',[_v("Expected: A "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("data")]),_v(" folder is created under the current repository where the jar file is located.")])])])])}
 },function anonymous(
 ) {
-with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.1.0")]),_v(", generated on Fri, 3 Nov 2023, 2:42:28 GMT+8]")])])])}
+with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.1.0")]),_v(", generated on Fri, 3 Nov 2023, 2:45:01 GMT+8]")])])])}
 }];
   
