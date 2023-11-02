@@ -49,9 +49,12 @@
         "logic-component": "Logic component",
         "model-component": "Model component",
         "storage-component": "Storage component",
-        "preferences-component": "Preferences component",
         "common-classes": "Common classes",
         "implementation": "Implementation",
+        "add-dates": "Add Dates",
+        "delete-dates": "Delete Dates",
+        "edit-dates": "Edit Dates",
+        "list-dates": "List Dates",
         "filter-dates": "Filter dates",
         "sort-dates": "Sort dates",
         "get-random-date": "Get random Date",
@@ -105,22 +108,6 @@
         "testing-guide": "Testing guide",
         "running-tests": "Running tests",
         "types-of-tests": "Types of tests"
-      },
-      "headingKeywords": {}
-    },
-    {
-      "src": "UGDraft.md",
-      "headings": {
-        "lovebook-user-guide-draft": "LoveBook User Guide Draft",
-        "wireframes": "Wireframes",
-        "features": "Features",
-        "listing-current-dates-list": "Listing current dates : list",
-        "deletion-of-dates-delete": "Deletion of dates: delete",
-        "editing-your-profile-editp": "Editing your profile editP",
-        "creation-of-new-date": "Creation of new date",
-        "edit-existing-dates": "Edit existing dates",
-        "random-date-generator": "Random Date Generator",
-        "filter-by-metric": "Filter by Metric"
       },
       "headingKeywords": {}
     },
