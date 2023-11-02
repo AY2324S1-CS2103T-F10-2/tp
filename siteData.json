@@ -58,6 +58,7 @@
         "sort-dates": "Sort dates",
         "get-random-date": "Get random Date",
         "get-best-match": "Get best match",
+        "set-preferences": "Set preferences",
         "star-dates": "Star dates",
         "unstar-dates": "Unstar dates",
         "documentation-logging-testing-configuration-dev-ops": "Documentation, logging, testing, configuration, dev-ops",
