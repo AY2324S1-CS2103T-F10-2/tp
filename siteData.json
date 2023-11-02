@@ -38,7 +38,6 @@
     },
     {
       "src": "DeveloperGuide.md",
-      "title": "Developer Guide",
       "headings": {
         "lovebook-developer-guide": "LoveBook Developer Guide",
         "acknowledgements": "Acknowledgements",
@@ -69,9 +68,18 @@
         "non-functional-requirements": "Non-Functional Requirements",
         "glossary": "Glossary",
         "appendix-instructions-for-manual-testing": "Appendix: Instructions for manual testing",
-        "launch-and-shutdown": "Launch and shutdown",
-        "deleting-a-date": "Deleting a date",
-        "saving-data": "Saving data"
+        "launch": "Launch",
+        "viewing-help": "Viewing Help",
+        "adding-dates": "Adding Dates",
+        "best-match-dates": "Best Match Dates",
+        "clearing-dates-in-lovebook": "Clearing Dates in LoveBook",
+        "deleting-dates": "Deleting Dates",
+        "editing-dates": "Editing Dates",
+        "finding-dates": "Finding Dates",
+        "filtering-dates": "Filtering Dates",
+        "finding-a-random-date": "Finding a Random Date",
+        "exit": "Exit",
+        "saving": "Saving"
       },
       "headingKeywords": {}
     },
