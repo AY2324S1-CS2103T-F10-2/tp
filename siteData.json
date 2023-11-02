@@ -60,6 +60,7 @@
         "get-best-match": "Get best match",
         "star-dates": "Star dates",
         "unstar-dates": "Unstar dates",
+        "the-sequence-diagram-below-shows-how-the-components-interact-with-each-other-for-the-scenario-where-the-user-issues-the-command-star-1": "The Sequence Diagram below shows how the components interact with each other for the scenario where the user issues\nthe command star 1\n",
         "documentation-logging-testing-configuration-dev-ops": "Documentation, logging, testing, configuration, dev-ops",
         "appendix-requirements": "Appendix: Requirements",
         "product-scope": "Product scope",
