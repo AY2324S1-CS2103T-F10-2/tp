@@ -38,6 +38,7 @@
     },
     {
       "src": "DeveloperGuide.md",
+      "title": "Developer Guide",
       "headings": {
         "lovebook-developer-guide": "LoveBook Developer Guide",
         "acknowledgements": "Acknowledgements",
