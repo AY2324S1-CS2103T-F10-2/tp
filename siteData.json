@@ -57,7 +57,7 @@
         "list-dates": "List Dates",
         "filter-dates": "Filter dates",
         "sort-dates": "Sort dates",
-        "get-random-date": "Get random Date",
+        "get-blind-date": "Get Blind Date",
         "get-best-match": "Get best match",
         "set-preferences": "Set preferences",
         "star-dates": "Star dates",
@@ -79,7 +79,7 @@
         "editing-dates": "Editing Dates",
         "finding-dates": "Finding Dates",
         "filtering-dates": "Filtering Dates",
-        "finding-a-random-date": "Finding a Random Date",
+        "finding-a-blind-date": "Finding a Blind Date",
         "exit": "Exit",
         "saving": "Saving"
       },

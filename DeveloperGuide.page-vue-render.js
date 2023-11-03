@@ -182,7 +182,7 @@ with(this){return _c('p',[_v("The "),_c('em',[_v("Activity")]),_v(" diagram summ
 with(this){return _c('p',[_v("The "),_c('em',[_v("Sequence")]),_v(" Diagram below shows how the components interact with each other for the scenario where the user issues\nthe command "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("sort name/ increasing")])])}
 },function anonymous(
 ) {
-with(this){return _c('h3',{attrs:{"id":"get-random-date"}},[_v("Get random Date"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#get-random-date","onclick":"event.stopPropagation()"}})])}
+with(this){return _c('h3',{attrs:{"id":"get-blind-date"}},[_v("Get Blind Date"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#get-blind-date","onclick":"event.stopPropagation()"}})])}
 },function anonymous(
 ) {
 with(this){return _c('h3',{attrs:{"id":"get-best-match"}},[_v("Get best match"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#get-best-match","onclick":"event.stopPropagation()"}})])}
@@ -464,10 +464,10 @@ with(this){return _c('h3',{attrs:{"id":"filtering-dates"}},[_v("Filtering Dates"
 with(this){return _c('ol',[_c('li',[_v("Filtering Dates by metric (e.g. name, age, height, income, horoscope)\n"),_c('ul',[_c('li',[_v("Type the following filter command into the text field."),_c('br'),_v(" "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("filter age/John")])]),_v(" "),_c('li',[_v("Press enter.")]),_v(" "),_c('li',[_v("Expected: The GUI shows the Dates with age in the filter command.")])])])])}
 },function anonymous(
 ) {
-with(this){return _c('h3',{attrs:{"id":"finding-a-random-date"}},[_v("Finding a Random Date"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#finding-a-random-date","onclick":"event.stopPropagation()"}})])}
+with(this){return _c('h3',{attrs:{"id":"finding-a-blind-date"}},[_v("Finding a Blind Date"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#finding-a-blind-date","onclick":"event.stopPropagation()"}})])}
 },function anonymous(
 ) {
-with(this){return _c('ol',[_c('li',[_v("Finding a Random Date\n"),_c('ul',[_c('li',[_v("Type the following random command into the text field."),_c('br'),_v(" "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("random")])]),_v(" "),_c('li',[_v("Press enter.")]),_v(" "),_c('li',[_v("Expected: The GUI shows a random Date in LoveBook.")])])])])}
+with(this){return _c('ol',[_c('li',[_v("Finding a Blind Date\n"),_c('ul',[_c('li',[_v("Type the following random command into the text field."),_c('br'),_v(" "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("blindDate")])]),_v(" "),_c('li',[_v("Press enter.")]),_v(" "),_c('li',[_v("Expected: The GUI shows a blind date in LoveBook.")])])])])}
 },function anonymous(
 ) {
 with(this){return _c('h3',{attrs:{"id":"exit"}},[_v("Exit"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#exit","onclick":"event.stopPropagation()"}})])}
@@ -482,6 +482,6 @@ with(this){return _c('h3',{attrs:{"id":"saving"}},[_v("Saving"),_c('a',{staticCl
 with(this){return _c('ol',[_c('li',[_c('p',[_v("Saving window preferences")]),_v(" "),_c('ul',[_c('li',[_v("Resize the window to an optimum size, preferably full screen. Close the window.")]),_v(" "),_c('li',[_v("Re-launch the app by double-clicking the jar file.")]),_v(" "),_c('li',[_v("Expected: The most recent window size and location is retained.")]),_v(" "),_c('li',[_v("Note: The window looks best under 1920 x 1080 resolution, 125% scale.")])])]),_v(" "),_c('li',[_c('p',[_v("Saving data")]),_v(" "),_c('ul',[_c('li',[_v("Launch the app by double-clicking the jar file.")]),_v(" "),_c('li',[_v("Execute an add command to add a "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("Date")]),_v(" in the database.")]),_v(" "),_c('li',[_v("Close the app.")]),_v(" "),_c('li',[_v("Expected: A "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("data")]),_v(" folder is created under the current repository where the jar file is located.")])])])])}
 },function anonymous(
 ) {
-with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.1.0")]),_v(", generated on Fri, 3 Nov 2023, 14:32:01 GMT+8]")])])])}
+with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.1.0")]),_v(", generated on Fri, 3 Nov 2023, 15:28:58 GMT+8]")])])])}
 }];
   
