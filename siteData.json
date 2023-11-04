@@ -129,7 +129,7 @@
         "2-features": "2 Features",
         "creation-of-new-date-add": "Creation of new date: add",
         "getting-a-recommended-date-bestmatch": "Getting a recommended Date: bestMatch",
-        "random-date-generator-blinddate": "Random Date Generator: blindDate",
+        "blind-date-generator-blinddate": "Blind Date Generator: blindDate",
         "clear-all-dates-clear": "Clear all dates: clear",
         "list-all-dates-list": "List all dates: list",
         "deletion-of-dates-delete": "Deletion of dates: delete",
@@ -144,7 +144,7 @@
         "star-a-date-star": "Star a date: star",
         "unstar-a-date-unstar": "Unstar a date: unstar",
         "3-faq": "3 FAQ",
-        "4-summary": "4 Summary",
+        "4-command-summary": "4 Command Summary",
         "5-glossary": "5 Glossary",
         "mainstream-os-windows-linux-unix-os-x": "Mainstream OS: Windows, Linux, Unix, OS-X."
       },
