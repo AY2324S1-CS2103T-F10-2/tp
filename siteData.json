@@ -123,10 +123,11 @@
     },
     {
       "src": "UserGuide.md",
+      "title": "User Guide",
       "headings": {
         "lovebook-user-guide": "LoveBook User Guide",
-        "1-quick-start": "1 Quick start",
-        "2-features": "2 Features",
+        "quick-start": "Quick Start",
+        "features": "Features",
         "creation-of-new-date-add": "Creation of new date: add",
         "getting-a-recommended-date-bestmatch": "Getting a recommended Date: bestMatch",
         "blind-date-generator-blinddate": "Blind Date Generator: blindDate",
@@ -143,9 +144,9 @@
         "sorting-list-of-dates-by-metric-sort": "Sorting list of dates by Metric: sort",
         "star-a-date-star": "Star a date: star",
         "unstar-a-date-unstar": "Unstar a date: unstar",
-        "3-faq": "3 FAQ",
-        "4-command-summary": "4 Command Summary",
-        "5-glossary": "5 Glossary",
+        "faq": "FAQ",
+        "command-summary": "Command Summary",
+        "glossary": "Glossary",
         "mainstream-os-windows-linux-unix-os-x": "Mainstream OS: Windows, Linux, Unix, OS-X."
       },
       "headingKeywords": {}
