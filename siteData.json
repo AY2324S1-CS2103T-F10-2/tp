@@ -81,7 +81,8 @@
         "filtering-dates": "Filtering Dates",
         "finding-a-blind-date": "Finding a Blind Date",
         "exit": "Exit",
-        "saving": "Saving"
+        "saving": "Saving",
+        "appendix-planned-enhancements": "Appendix: Planned Enhancements"
       },
       "headingKeywords": {}
     },
@@ -155,7 +156,7 @@
       "src": "index.md",
       "title": "",
       "headings": {
-        "lovebook-level-3": "LoveBook Level-3"
+        "lovebook": "LoveBook"
       },
       "headingKeywords": {}
     },
