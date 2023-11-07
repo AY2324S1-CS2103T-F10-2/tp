@@ -488,6 +488,6 @@ with(this){return _c('h2',{attrs:{"id":"appendix-planned-enhancements"}},[_c('st
 with(this){return _c('ol',[_c('li',[_v("Improve the command parser to be more robust. Some examples include:\n"),_c('ul',[_c('li',[_v("Gender entered while adding a new date is case-sensitive. We are planning to make it case-insensitive.")]),_v(" "),_c('li',[_v("Adding dates with the same name is currently not allowed. We are planning to allow this.")]),_v(" "),_c('li',[_v("Allowing some fields to be optional if user doesn't have access to the information. For example, if the user does\nnot know the income of the date, he/she can leave it blank. Currently, this is not allowed. We are planning to\nallow this.")])])])])}
 },function anonymous(
 ) {
-with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.1.0")]),_v(", generated on Tue, 7 Nov 2023, 14:01:52 GMT+8]")])])])}
+with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.1.0")]),_v(", generated on Tue, 7 Nov 2023, 14:45:35 GMT+8]")])])])}
 }];
   
