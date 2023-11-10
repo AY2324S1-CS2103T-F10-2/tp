@@ -128,7 +128,11 @@
       "headings": {
         "lovebook-user-guide": "LoveBook User Guide",
         "quick-start": "Quick Start",
+        "download-and-installation": "Download and Installation",
+        "navigating-the-gui": "Navigating the GUI",
+        "common-symbols": "Common Symbols",
         "features": "Features",
+        "prefix-table": "Prefix Table",
         "managing-dates": "Managing Dates",
         "adding-a-new-date-add": "Adding a new date: add",
         "editing-a-date-edit": "Editing a date: edit",
@@ -150,7 +154,6 @@
         "exiting-the-application-exit": "Exiting the application: exit",
         "getting-help-help": "Getting help: help",
         "faq": "FAQ",
-        "prefix-summary-for-metrics": "Prefix Summary for Metrics",
         "command-summary": "Command Summary",
         "glossary": "Glossary"
       },
