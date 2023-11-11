@@ -127,10 +127,13 @@
       "title": "User Guide",
       "headings": {
         "lovebook-user-guide": "LoveBook User Guide",
+        "glossary": "Glossary",
+        "common-symbols": "Common Symbols",
         "quick-start": "Quick Start",
         "download-and-installation": "Download and Installation",
         "navigating-the-gui": "Navigating the GUI",
-        "common-symbols": "Common Symbols",
+        "lovebook-tutorial-getting-started": "LoveBook Tutorial: Getting started",
+        "congrats-you-have-completed-the-tutorial": "Congrats! You have completed the tutorial!",
         "features": "Features",
         "prefix-table": "Prefix Table",
         "managing-dates": "Managing Dates",
@@ -138,8 +141,7 @@
         "managing-preferences-and-getting-matches": "Managing Preferences and Getting Matches",
         "other-commands": "Other Commands",
         "faq": "FAQ",
-        "command-summary": "Command Summary",
-        "glossary": "Glossary"
+        "command-summary": "Command Summary"
       },
       "headingKeywords": {}
     },
