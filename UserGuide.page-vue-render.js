@@ -299,10 +299,10 @@ with(this){return _c('p',[_c('a',{attrs:{"href":"#table-of-contents"}},[_v("Scro
 with(this){return _c('h4',{attrs:{"id":"filtering-dates-by-a-certain-metric-filter"}},[_c('strong',[_v("Filtering dates by a certain metric: "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("filter")])]),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#filtering-dates-by-a-certain-metric-filter","onclick":"event.stopPropagation()"}})])}
 },function anonymous(
 ) {
-with(this){return _c('p',[_v("Format: "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("filter METRIC/ARG")])])}
+with(this){return _c('p',[_v("Format: "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("filter xx METRIC/ARG")])])}
 },function anonymous(
 ) {
-with(this){return _c('ul',[_c('li',[_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("filter name/Cleon")])]),_v(" "),_c('li',[_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("filter gender/M")])]),_v(" "),_c('li',[_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("filter gender/M name/Cleon")])]),_v(" "),_c('li',[_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("filter xx gender/M', where xx can be anything including an invalid metric")])])])}
+with(this){return _c('ul',[_c('li',[_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("filter name/Cleon")])]),_v(" "),_c('li',[_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("filter gender/M")])]),_v(" "),_c('li',[_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("filter gender/M name/Cleon")])]),_v(" "),_c('li',[_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("filter hi gender/M")])]),_v(" "),_c('li',[_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("filter income/20 name/Cleon")]),_v(" (this only returns dates with name Cleon since income is an invalid metric)")])])}
 },function anonymous(
 ) {
 with(this){return _c('p',[_v("Expected Output: "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("Lists the dates with the valid metric values specified")])])}
@@ -461,6 +461,6 @@ with(this){return _c('div',{staticClass:"table-responsive"},[_c('table',{staticC
 with(this){return _c('p',[_c('a',{attrs:{"href":"#table-of-contents"}},[_v("Scroll back to "),_c('em',[_v("Table of Contents")])])])}
 },function anonymous(
 ) {
-with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.1.0")]),_v(", generated on Tue, 14 Nov 2023, 3:48:26 GMT+8]")])])])}
+with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.1.0")]),_v(", generated on Tue, 14 Nov 2023, 3:56:23 GMT+8]")])])])}
 }];
   
