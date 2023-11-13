@@ -64,9 +64,6 @@
         "star-dates": "Star dates",
         "unstar-dates": "Unstar dates",
         "documentation-logging-testing-configuration-dev-ops": "Documentation, logging, testing, configuration, dev-ops",
-        "effort": "Effort",
-        "evolving-of-ab3-into-lovebook": "Evolving of AB3 into LoveBook",
-        "revamping-of-ui": "Revamping of UI",
         "appendix-requirements": "Appendix: Requirements",
         "product-scope": "Product scope",
         "user-stories": "User stories",
@@ -84,7 +81,8 @@
         "exiting-the-application": "Exiting the Application",
         "saving-if-you-haven-t-already-exited": "Saving (If you haven't already exited)",
         "appendix-effort": "Appendix: Effort",
-        "effort-summary": "Effort Summary",
+        "evolving-of-ab3-into-lovebook": "Evolving of AB3 into LoveBook",
+        "revamping-of-ui": "Revamping of UI",
         "appendix-planned-enhancements": "Appendix: Planned Enhancements"
       },
       "headingKeywords": {}
@@ -141,7 +139,7 @@
         "congrats-you-have-completed-the-tutorial": "Congrats! You have completed the tutorial! ",
         "features": "Features",
         "managing-dates": "Managing Dates",
-        "sorting-searching-for-dates": "Sorting, Searching for dates",
+        "sorting-finding-dates": "Sorting, Finding dates",
         "managing-preferences-and-getting-matches": "Managing Preferences and Getting Matches",
         "other-commands": "Other Commands",
         "faq": "FAQ",
