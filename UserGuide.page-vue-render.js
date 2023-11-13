@@ -11,7 +11,7 @@ with(this){return _c('h1',{attrs:{"id":"lovebook-user-guide"}},[_v("LoveBook Use
 with(this){return _c('h2',{attrs:{"id":"overview"}},[_c('strong',[_v("Overview")]),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#overview","onclick":"event.stopPropagation()"}})])}
 },function anonymous(
 ) {
-with(this){return _c('p',[_v("LoveBook, is a "),_c('strong',[_v("dating-focused")]),_v(" application, revolving around providing "),_c('strong',[_v("serial daters")]),_v(" with a "),_c('strong',[_v("convenient")]),_v("\nand "),_c('strong',[_v("enjoyable")]),_v(" tool to enhance their dating experiences. Featuring "),_c('strong',[_v("user preferences management")]),_v(", "),_c('strong',[_v("date\norganization")]),_v(",\n"),_c('strong',[_v("customizable filtering options")]),_v(" and "),_c('strong',[_v("best match algorithms")]),_v(", LoveBook enhances the "),_c('strong',[_v("efficiency")]),_v(" and *\n"),_c('em',[_v("effectiveness")]),_v("* of your\nonline dating journey.")])}
+with(this){return _c('p',[_v("LoveBook, is a "),_c('strong',[_v("dating-focused")]),_v(" application, revolving around providing "),_c('strong',[_v("serial daters")]),_v(" with a "),_c('strong',[_v("convenient")]),_v("\nand "),_c('strong',[_v("enjoyable")]),_v(" tool to enhance their dating experiences. Featuring "),_c('strong',[_v("user preferences management")]),_v(", "),_c('strong',[_v("date\norganization")]),_v(",\n"),_c('strong',[_v("customizable filtering options")]),_v(" and "),_c('strong',[_v("best match algorithms")]),_v(", LoveBook enhances the "),_c('strong',[_v("efficiency")]),_v(" and *\n"),_c('strong',[_v("effectiveness")]),_v(" of your online dating journey.")])}
 },function anonymous(
 ) {
 with(this){return _c('h2',{attrs:{"id":"table-of-contents"}},[_c('strong',[_v("Table of Contents")]),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#table-of-contents","onclick":"event.stopPropagation()"}})])}
@@ -443,6 +443,6 @@ with(this){return _c('div',{staticClass:"table-responsive"},[_c('table',{staticC
 with(this){return _c('p',[_c('a',{attrs:{"href":"#table-of-contents"}},[_v("Scroll back to "),_c('em',[_v("Table of Contents")])])])}
 },function anonymous(
 ) {
-with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.1.0")]),_v(", generated on Mon, 13 Nov 2023, 20:27:16 GMT+8]")])])])}
+with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.1.0")]),_v(", generated on Mon, 13 Nov 2023, 20:27:43 GMT+8]")])])])}
 }];
   

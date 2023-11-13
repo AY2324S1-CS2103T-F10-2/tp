@@ -197,14 +197,8 @@
       "src": "team/shishirbychapur.md",
       "title": "Shishir Bychapur's Project Portfolio Page",
       "headings": {
-        "shishir-s-project-portfolio-page": "Shishir's Project Portfolio Page",
         "project-lovebook": "Project: LoveBook",
-        "new-features": "New Features",
-        "code-contributions": "Code Contributions",
-        "project-management": "Project management",
-        "enhancements-to-existing-features": "Enhancements to existing features",
-        "documentation": "Documentation",
-        "community": "Community"
+        "shishir-s-project-portfolio-page": "Shishir's Project Portfolio Page"
       },
       "headingKeywords": {}
     },
