@@ -60,6 +60,7 @@
         "get-blind-date": "Get Blind Date",
         "get-best-match": "Get best match",
         "set-preferences": "Set preferences",
+        "show-preferences": "Show preferences",
         "star-dates": "Star dates",
         "unstar-dates": "Unstar dates",
         "documentation-logging-testing-configuration-dev-ops": "Documentation, logging, testing, configuration, dev-ops",
