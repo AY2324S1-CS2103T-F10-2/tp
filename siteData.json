@@ -41,6 +41,7 @@
       "title": "Developer Guide",
       "headings": {
         "lovebook-developer-guide": "LoveBook Developer Guide",
+        "overview": "Overview",
         "acknowledgements": "Acknowledgements",
         "setting-up-getting-started": "Setting up, getting started",
         "design": "Design",
@@ -51,9 +52,7 @@
         "storage-component": "Storage component",
         "common-classes": "Common classes",
         "implementation": "Implementation",
-        "add-dates": "Add Dates",
-        "delete-dates": "Delete Dates",
-        "edit-dates": "Edit Dates",
+        "add-dates-feature": "Add Dates Feature",
         "list-dates": "List Dates",
         "filter-dates": "Filter dates",
         "sort-dates": "Sort dates",
