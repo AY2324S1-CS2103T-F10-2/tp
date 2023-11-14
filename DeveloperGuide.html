@@ -30,194 +30,1032 @@ and <strong>enjoyable</strong> tool to enhance their dating experiences. Featuri
 organization</strong>, <strong>customizable filtering options</strong> and <strong>best match algorithms</strong>, LoveBook enhances the <strong>efficiency</strong>
 of your online dating journey.</p> <h2 id="acknowledgements"><strong>Acknowledgements</strong><a href="#acknowledgements" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h2> <ul><li>Code reused from here to disable click feature of <code class="hljs inline no-lang">ListView</code>:
 <a href="https://stackoverflow.com/questions/20621752/javafx-make-listview-not-selectable-via-mouse">https://stackoverflow.com/questions/20621752/javafx-make-listview-not-selectable-via-mouse</a></li> <li>Result Display FXML code inspired from here:
-<a href="https://github.com/AY1920S2-CS2103T-F09-3/main">https://github.com/AY1920S2-CS2103T-F09-3/main</a></li></ul> <h2 id="table-of-contents"><strong>Table of Contents</strong><a href="#table-of-contents" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h2> <ul><li><a href="#overview"><strong>Overview</strong></a></li> <li><a href="#acknowledgements"><strong>Acknowledgements</strong></a></li> <li><a href="#table-of-contents"><strong>Table of Contents</strong></a></li> <li><a href="#setting-up-getting-started"><strong>Setting up, getting started</strong></a></li> <li><a href="#design"><strong>Design</strong></a> <ul><li><a href="#architecture">Architecture</a></li> <li><a href="#ui-component">UI component</a></li> <li><a href="#logic-component">Logic component</a></li> <li><a href="#model-component">Model component</a></li> <li><a href="#storage-component">Storage component</a></li> <li><a href="#common-classes">Common classes</a></li></ul></li> <li><a href="#implementation"><strong>Implementation</strong></a> <ul><li><a href="#add-dates">Add Dates</a></li> <li><a href="#list-dates">List Dates</a></li> <li><a href="#filter-dates">Filter dates</a></li> <li><a href="#sort-dates">Sort dates</a></li> <li><a href="#get-blind-date">Get Blind Date</a></li> <li><a href="#get-best-match">Get best match</a></li> <li><a href="#set-preferences">Set preferences</a></li> <li><a href="#star-dates">Star dates</a></li> <li><a href="#unstar-dates">Unstar dates</a></li></ul></li> <li><a href="#documentation-logging-testing-configuration-dev-ops"><strong>Documentation, logging, testing, configuration, dev-ops</strong></a></li> <li><a href="#appendix-requirements"><strong>Appendix: Requirements</strong></a> <ul><li><a href="#product-scope">Product scope</a></li> <li><a href="#user-stories">User stories</a></li> <li><a href="#use-cases">Use cases</a></li> <li><a href="#non-functional-requirements">Non-Functional Requirements</a></li> <li><a href="#glossary">Glossary</a></li></ul></li> <li><a href="#appendix-instructions-for-manual-testing"><strong>Appendix: Instructions for Manual Testing</strong></a> <ul><li><a href="#launch">Launch</a></li> <li><a href="#viewing-help">Viewing Help</a></li> <li><a href="#adding-dates">Adding Dates</a></li> <li><a href="#editing-dates">Editing Dates</a></li> <li><a href="#finding-dates">Finding Dates</a></li> <li><a href="#filtering-dates">Filtering Dates</a></li> <li><a href="#finding-a-blind-date">Finding a Blind Date</a></li> <li><a href="#exiting-the-application">Exiting the Application</a></li> <li><a href="#saving-data">Saving Data</a></li></ul></li> <li><a href="#appendix-effort"><strong>Appendix: Effort</strong></a> <ul><li><a href="#evolving-of-ab3-into-lovebook">Evolving of AB3 into LoveBook</a></li> <li><a href="#revamping-of-ui">Revamping of UI</a></li></ul></li> <li><a href="#appendix-planned-enhancements"><strong>Appendix: Planned Enhancements</strong></a></li></ul> <hr> <h2 id="setting-up-getting-started"><strong>Setting up, getting started</strong><a href="#setting-up-getting-started" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h2> <p>Refer to the guide <a href="/tp/SettingUp.html"><em>Setting up and getting started</em></a>.</p> <hr> <h2 id="design"><strong>Design</strong><a href="#design" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h2> <h3 id="architecture">Architecture<a href="#architecture" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <span class="image-wrapper"><img src="/tp/diagrams/ArchitectureDiagram.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span> <p>The <strong><em>Architecture Diagram</em></strong> given above explains the high-level design of the App.</p> <p>Given below is a quick overview of main components and how they interact with each other.</p> <p><strong>Main components of the architecture</strong></p> <p><strong><code class="hljs inline no-lang">Main</code></strong> (consisting of
-classes <a href="https://github.com/AY2324S1-CS2103T-F10-2/tp/blob/master/src/main/java/seedu/lovebook/Main.java"><code class="hljs inline no-lang">Main</code></a>
-and <a href="https://github.com/AY2324S1-CS2103T-F10-2/tp/blob/master/src/main/java/seedu/lovebook/MainApp.java"><code class="hljs inline no-lang">MainApp</code></a>) is
-in charge of the app launch and shut down.</p> <ul><li>At app launch, it initializes the other components in the correct sequence, and connects them up with each other.</li> <li>At shut down, it shuts down the other components and invokes cleanup methods where necessary.</li></ul> <p>The bulk of the app's work is done by the following four components:</p> <ul><li><a href="#ui-component"><strong><code class="hljs inline no-lang">UI</code></strong></a>: The UI of the App.</li> <li><a href="#logic-component"><strong><code class="hljs inline no-lang">Logic</code></strong></a>: The command executor.</li> <li><a href="#model-component"><strong><code class="hljs inline no-lang">Model</code></strong></a>: Holds the data of the App in memory.</li> <li><a href="#storage-component"><strong><code class="hljs inline no-lang">Storage</code></strong></a>: Reads data from, and writes data to, the hard disk.</li></ul> <p><a href="#common-classes"><strong><code class="hljs inline no-lang">Commons</code></strong></a> represents a collection of classes used by multiple other components.</p> <p><strong>How the architecture components interact with each other</strong></p> <p>This application attempts to separate the <code class="hljs inline no-lang">UI</code>, <code class="hljs inline no-lang">Logic</code>, <code class="hljs inline no-lang">Model</code> and <code class="hljs inline no-lang">Storage</code> components to reduce coupling between the
-components.
-This is done by using interfaces to define the API of each component and using classes to implement the functionality of
-each component.
-This allows the components to be easily added and replaced with other implementations without affecting the other
-components.
-For example, new features can be added to the <code class="hljs inline no-lang">Storage</code> component without affecting the other components.</p> <p>The <em>Sequence Diagram</em> below shows how the components interact with each other for the scenario where the user issues
-the command <code class="hljs inline no-lang">delete 1</code>.</p> <span class="image-wrapper"><img src="/tp/diagrams/ArchitectureSequenceDiagram.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span> <p>Each of the four main components (also shown in the diagram above),</p> <ul><li>defines its <em>API</em> in an <code class="hljs inline no-lang">interface</code> with the same name as the Component.</li> <li>implements its functionality using a concrete <code class="hljs inline no-lang">{Component Name}Manager</code> class (which follows the corresponding
-API <code class="hljs inline no-lang">interface</code> mentioned in the previous point.</li></ul> <p>For example, the <code class="hljs inline no-lang">Logic</code> component defines its API in the <code class="hljs inline no-lang">Logic.java</code> interface and implements its functionality using
-the <code class="hljs inline no-lang">LogicManager.java</code> class which follows the <code class="hljs inline no-lang">Logic</code> interface. Other components interact with a given component
+<a href="https://github.com/AY1920S2-CS2103T-F09-3/main">https://github.com/AY1920S2-CS2103T-F09-3/main</a></li></ul> <h2 id="table-of-contents"><strong>Table of Contents</strong><a href="#table-of-contents" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h2> <ul><li><a href="#overview"><strong>Overview</strong></a></li> <li><a href="#acknowledgements"><strong>Acknowledgements</strong></a></li> <li><a href="#table-of-contents"><strong>Table of Contents</strong></a></li> <li><a href="#setting-up-getting-started"><strong>Setting up, getting started</strong></a></li> <li><a href="#design"><strong>Design</strong></a> <ul><li><a href="#architecture">Architecture</a></li> <li><a href="#ui-component">UI component</a></li> <li><a href="#logic-component">Logic component</a></li> <li><a href="#model-component">Model component</a></li> <li><a href="#storage-component">Storage component</a></li> <li><a href="#common-classes">Common classes</a></li></ul></li> <li><a href="#implementation"><strong>Implementation</strong></a> <ul><li><a href="#add-dates">Add Dates</a></li> <li><a href="#list-dates">List Dates</a></li> <li><a href="#filter-dates">Filter dates</a></li> <li><a href="#sort-dates">Sort dates</a></li> <li><a href="#get-blind-date">Get Blind Date</a></li> <li><a href="#get-best-match">Get best match</a></li> <li><a href="#set-preferences">Set preferences</a></li> <li><a href="#star-dates">Star dates</a></li> <li><a href="#unstar-dates">Unstar dates</a></li></ul></li> <li><a href="#documentation-logging-testing-configuration-dev-ops"><strong>Documentation, logging, testing, configuration, dev-ops</strong></a></li> <li><a href="#appendix-requirements"><strong>Appendix: Requirements</strong></a> <ul><li><a href="#product-scope">Product scope</a></li> <li><a href="#user-stories">User stories</a></li> <li><a href="#use-cases">Use cases</a></li> <li><a href="#non-functional-requirements">Non-Functional Requirements</a></li> <li><a href="#glossary">Glossary</a></li></ul></li> <li><a href="#appendix-instructions-for-manual-testing"><strong>Appendix: Instructions for Manual Testing</strong></a> <ul><li><a href="#launch">Launch</a></li> <li><a href="#viewing-help">Viewing Help</a></li> <li><a href="#adding-dates">Adding Dates</a></li> <li><a href="#editing-dates">Editing Dates</a></li> <li><a href="#finding-dates">Finding Dates</a></li> <li><a href="#filtering-dates">Filtering Dates</a></li> <li><a href="#finding-a-blind-date">Finding a Blind Date</a></li> <li><a href="#exiting-the-application">Exiting the Application</a></li> <li><a href="#saving-data">Saving Data</a></li></ul></li> <li><a href="#appendix-effort"><strong>Appendix: Effort</strong></a> <ul><li><a href="#evolving-of-ab3-into-lovebook">Evolving of AB3 into LoveBook</a></li> <li><a href="#revamping-of-ui">Revamping of UI</a></li></ul></li> <li><a href="#appendix-planned-enhancements"><strong>Appendix: Planned Enhancements</strong></a></li></ul> <hr> <h2 id="setting-up-getting-started"><strong>Setting up, getting started</strong><a href="#setting-up-getting-started" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h2> <p>Refer to the guide <a href="/tp/SettingUp.html"><em>Setting up and getting started</em></a>.</p> <hr> <h2 id="design"><strong>Design</strong><a href="#design" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h2> <h3 id="architecture">Architecture<a href="#architecture" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> &quot;&gt;
+
+Each of the four main components (also shown in the diagram above),
+
+- defines its _API_ in an `interface` with the same name as the Component.
+- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding
+  API `interface` mentioned in the previous point.
+
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using
+the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component
 through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the
-implementation of a component), as illustrated in the (partial) class diagram below.</p> <span class="image-wrapper"><img src="/tp/diagrams/ComponentManagers.png" width="300" class="img-fluid rounded"> <span class="image-caption"></span></span> <p>The sections below give more details of each component.</p> <p><a href="#table-of-contents">Scroll back to <em>Table of Contents</em></a></p> <h3 id="ui-component">UI component<a href="#ui-component" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <p>The <strong>API</strong> of this component is specified
-in <a href="https://github.com/AY2324S1-CS2103T-F10-2/tp/blob/master/src/main/java/seedu/lovebook/ui/Ui.java"><code class="hljs inline no-lang">Ui.java</code></a></p> <span class="image-wrapper"><img src="/tp/diagrams/UiClassDiagram.png" alt="Structure of the UI Component" width="" class="img-fluid rounded"> <span class="image-caption"></span></span> <p>The UI consists of a <code class="hljs inline no-lang">MainWindow</code> that is made up of parts
-e.g.<code class="hljs inline no-lang">CommandBox</code>, <code class="hljs inline no-lang">ResultDisplay</code>, <code class="hljs inline no-lang">DateListPanel</code>, <code class="hljs inline no-lang">StatusBarFooter</code> etc. All these, including the <code class="hljs inline no-lang">MainWindow</code>,
-inherit from the abstract <code class="hljs inline no-lang">UiPart</code> class which captures the commonalities between classes that represent parts of the
-visible GUI.</p> <p>The <code class="hljs inline no-lang">UI</code> component uses the JavaFx UI framework. The layout of these UI parts are defined in matching <code class="hljs inline no-lang">.fxml</code> files that
-are in the <code class="hljs inline no-lang">src/main/resources/view</code> folder. For example, the layout of
-the <a href="https://github.com/AY2324S1-CS2103T-F10-2/tp/blob/master/src/main/java/seedu/lovebook/ui/MainWindow.java"><code class="hljs inline no-lang">MainWindow</code></a>
+implementation of a component), as illustrated in the (partial) class diagram below.
+
+<span class="image-wrapper"><img src="/tp/diagrams/ComponentManagers.png" width="300" class="img-fluid rounded"> <span class="image-caption"></span></span>
+
+The sections below give more details of each component.
+
+[Scroll back to _Table of Contents_](#table-of-contents)
+
+### UI component
+
+The **API** of this component is specified
+in [`Ui.java`](https://github.com/AY2324S1-CS2103T-F10-2/tp/blob/master/src/main/java/seedu/lovebook/ui/Ui.java)
+
+<span class="image-wrapper"><img src="/tp/diagrams/UiClassDiagram.png" alt="Structure of the UI Component" width="" class="img-fluid rounded"> <span class="image-caption"></span></span>
+
+The UI consists of a `MainWindow` that is made up of parts
+e.g.`CommandBox`, `ResultDisplay`, `DateListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`,
+inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the
+visible GUI.
+
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
+are in the `src/main/resources/view` folder. For example, the layout of
+the [`MainWindow`](https://github.com/AY2324S1-CS2103T-F10-2/tp/blob/master/src/main/java/seedu/lovebook/ui/MainWindow.java)
 is specified
-in <a href="https://github.com/se-edu/LoveBook-level3/tree/master/src/main/resources/view/MainWindow.fxml"><code class="hljs inline no-lang">MainWindow.fxml</code></a></p> <p>The <code class="hljs inline no-lang">UI</code> component,</p> <ul><li>executes user commands using the <code class="hljs inline no-lang">Logic</code> component.</li> <li>listens for changes to <code class="hljs inline no-lang">Model</code> data so that the UI can be updated with the modified data.</li> <li>keeps a reference to the <code class="hljs inline no-lang">Logic</code> component, because the <code class="hljs inline no-lang">UI</code> relies on the <code class="hljs inline no-lang">Logic</code> to execute commands.</li> <li>depends on some classes in the <code class="hljs inline no-lang">Model</code> component, as it displays <code class="hljs inline no-lang">Date</code> object residing in the <code class="hljs inline no-lang">Model</code>.</li></ul> <p><a href="#table-of-contents">Scroll back to <em>Table of Contents</em></a></p> <h3 id="logic-component">Logic component<a href="#logic-component" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <p>**API
-** : <a href="https://github.com/AY2324S1-CS2103T-F10-2/tp/blob/master/src/main/java/seedu/lovebook/logic/Logic.java"><code class="hljs inline no-lang">Logic.java</code></a></p> <p>Here's a (partial) class diagram of the <code class="hljs inline no-lang">Logic</code> component:</p> <span class="image-wrapper"><img src="/tp/diagrams/LogicClassDiagram.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span> <p>The sequence diagram below illustrates the interactions within the <code class="hljs inline no-lang">Logic</code> component, taking <code class="hljs inline no-lang">execute(&quot;delete 1&quot;)</code> API
-call as an example.</p> <span class="image-wrapper"><img src="/tp/diagrams/DeleteSequenceDiagram.png" alt="Interactions Inside the Logic Component for the `delete 1` Command" width="" class="img-fluid rounded"> <span class="image-caption"></span></span> <div class="alert box-container alert-info" data-v-4d146e2c><!----> <div class="header-and-body" data-v-4d146e2c><!----> <div class="box-body-wrapper" data-v-4d146e2c><div class="icon-wrapper" data-v-4d146e2c><i class="fas fa-info" data-v-4d146e2c></i></div> <!----> <div class="contents" data-v-4d146e2c><p data-v-4d146e2c><strong data-v-4d146e2c>Note:</strong> The lifeline for <code class="hljs inline no-lang" data-v-4d146e2c>DeleteCommandParser</code> should end at the destroy marker (X) but due to a limitation of
-PlantUML, the lifeline reaches the end of diagram.</p></div> <!----></div></div></div> <p>How the <code class="hljs inline no-lang">Logic</code> component works:</p> <ol><li>When <code class="hljs inline no-lang">Logic</code> is called upon to execute a command, it is passed to an <code class="hljs inline no-lang">LoveBookParser</code> object which in turn creates a
-parser that matches the command (e.g., <code class="hljs inline no-lang">DeleteCommandParser</code>) and uses it to parse the command.</li> <li>This results in a <code class="hljs inline no-lang">Command</code> object (more precisely, an object of one of its subclasses e.g., <code class="hljs inline no-lang">DeleteCommand</code>) which
-is executed by the <code class="hljs inline no-lang">LogicManager</code>.</li> <li>The command can communicate with the <code class="hljs inline no-lang">Model</code> when it is executed (e.g. to delete a date).</li> <li>The result of the command execution is encapsulated as a <code class="hljs inline no-lang">CommandResult</code> object which is returned back from <code class="hljs inline no-lang">Logic</code>.</li></ol> <p>Here are the other classes in <code class="hljs inline no-lang">Logic</code> (omitted from the class diagram above) that are used for parsing a user command:</p> <span class="image-wrapper"><img src="/tp/diagrams/ParserClasses.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span> <p>How the parsing works:</p> <ul><li>When called upon to parse a user command, the <code class="hljs inline no-lang">LoveBookParser</code> class creates an <code class="hljs inline no-lang">XYZCommandParser</code> (<code class="hljs inline no-lang">XYZ</code> is a
-placeholder for the specific command name e.g., <code class="hljs inline no-lang">AddCommandParser</code>) which uses the other classes shown above to parse
-the user command and create a <code class="hljs inline no-lang">XYZCommand</code> object (e.g., <code class="hljs inline no-lang">AddCommand</code>) which the <code class="hljs inline no-lang">LoveBookParser</code> returns back as
-a <code class="hljs inline no-lang">Command</code> object.</li> <li>All <code class="hljs inline no-lang">XYZCommandParser</code> classes (e.g., <code class="hljs inline no-lang">AddCommandParser</code>, <code class="hljs inline no-lang">DeleteCommandParser</code>, ...) inherit from the <code class="hljs inline no-lang">Parser</code>
-interface so that they can be treated similarly where possible e.g, during testing.</li></ul> <p><a href="#table-of-contents">Scroll back to <em>Table of Contents</em></a></p> <h3 id="model-component">Model component<a href="#model-component" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <p>**API
-** : <a href="https://github.com/AY2324S1-CS2103T-F10-2/tp/blob/master/src/main/java/seedu/lovebook/model/Model.java"><code class="hljs inline no-lang">Model.java</code></a></p> <span class="image-wrapper"><img src="/tp/diagrams/ModelClassDiagram.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span> <p>The <code class="hljs inline no-lang">Model</code> component,</p> <ul><li>stores the LoveBook data i.e., all <code class="hljs inline no-lang">Date</code> objects (which are contained in a <code class="hljs inline no-lang">UniqueDateList</code> object).</li> <li>stores the currently 'selected' <code class="hljs inline no-lang">Date</code> objects (e.g., results of a search query) as a separate <em>filtered</em> list which
-is exposed to outsiders as an unmodifiable <code class="hljs inline no-lang">ObservableList&lt;Date&gt;</code> that can be 'observed' e.g. the UI can be bound to
-this list so that the UI automatically updates when the data in the list change.</li> <li>stores a <code class="hljs inline no-lang">UserPrefs</code> object that represents the user’s preferences. This is exposed to the outside as
-a <code class="hljs inline no-lang">ReadOnlyUserPrefs</code> objects.</li> <li>stores a <code class="hljs inline no-lang">DatePrefs</code> object that represents the user’s preferences for dates. This is exposed to the outside as
-a <code class="hljs inline no-lang">ReadOnlyDatePrefs</code> objects.</li> <li>does not depend on any of the other three components (as the <code class="hljs inline no-lang">Model</code> represents data entities of the domain, they
-should make sense on their own without depending on other components)</li></ul> <p><a href="#table-of-contents">Scroll back to <em>Table of Contents</em></a></p> <h3 id="storage-component">Storage component<a href="#storage-component" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <p>**API
-** : <a href="https://github.com/AY2324S1-CS2103T-F10-2/tp/blob/master/src/main/java/seedu/lovebook/storage/Storage.java"><code class="hljs inline no-lang">Storage.java</code></a></p> <span class="image-wrapper"><img src="/tp/diagrams/StorageClassDiagram.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span> <p>The <code class="hljs inline no-lang">Storage</code> component,</p> <ul><li>saves LoveBook data, date preferences data and user preference data in JSON format, and reads them back into
-corresponding objects.</li> <li>inherits from <code class="hljs inline no-lang">LoveBookStorage</code>, <code class="hljs inline no-lang">UserPrefsStorage</code> and <code class="hljs inline no-lang">DatePrefsStorage</code>, which means it can be treated as
-either one of three (if the functionality of only one is needed).</li> <li>depends on some classes in the <code class="hljs inline no-lang">Model</code> component (because the <code class="hljs inline no-lang">Storage</code> component's job is to save/retrieve objects
-that belong to the <code class="hljs inline no-lang">Model</code>)</li></ul> <p><a href="#table-of-contents">Scroll back to <em>Table of Contents</em></a></p> <h3 id="common-classes">Common classes<a href="#common-classes" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <p>Classes used by multiple components are in the <code class="hljs inline no-lang">seedu.LoveBook.commons</code> package.</p> <hr> <h2 id="implementation"><strong>Implementation</strong><a href="#implementation" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h2> <p>Before diving into the implementation details, here's an overview of what changed from the AB-3 codebase.</p> <ul><li>Address, Phone Number, Email, Tags fields have been replaced with Gender, Age, Horoscope, Height and Income fields.</li> <li>The <code class="hljs inline no-lang">Person</code> class has been renamed to <code class="hljs inline no-lang">Date</code> class, and most of the classes named <code class="hljs inline no-lang">Personxxx</code> have been renamed
-accordingly.</li> <li>The GUI has been updated to make the application more visually appealing and user-friendly.</li> <li>Several other commands like <code class="hljs inline no-lang">filter</code>, <code class="hljs inline no-lang">star</code>, <code class="hljs inline no-lang">bestMatch</code> (not exhaustive) have been added to the application.</li></ul> <p>The following class diagram shows the new <code class="hljs inline no-lang">Date</code> class after the changes mentioned above.</p> <span class="image-wrapper"><img src="/tp/diagrams/DateClassDiagram.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span> <p>Moving on to the implementation details, the following sections describe how and why the main features of the app work.</p> <p><a href="#table-of-contents">Scroll back to <em>Table of Contents</em></a></p> <h3 id="add-dates">Add Dates<a href="#add-dates" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <h4 id="implementation-2">Implementation<a href="#implementation-2" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h4> <ol><li>The add dates feature begins by passing the user input obtained from the <code class="hljs inline no-lang">CommandBox</code> class in the <code class="hljs inline no-lang">Ui</code> component to
-the <code class="hljs inline no-lang">LogicManager</code> class in the <code class="hljs inline no-lang">Logic</code> component by invoking the <code class="hljs inline no-lang">execute</code> function.</li> <li>The <code class="hljs inline no-lang">LogicManager</code> class then passes the user input to the <code class="hljs inline no-lang">LoveBookParser</code> class for parsing and validation.</li> <li>The <code class="hljs inline no-lang">LoveBookParser</code> class then performs polymorphism and creates an <code class="hljs inline no-lang">AddCommandParser</code> object for add command
-specific parsing.</li> <li>The <code class="hljs inline no-lang">LoveBookParser</code> class also separates the command word from the user input and passes the arguments from the user
-input to the <code class="hljs inline no-lang">AddCommandParser</code> object created above for parsing.</li> <li>The <code class="hljs inline no-lang">AddCommandParser</code> carries out it's validation checks and creates new <code class="hljs inline no-lang">Date</code>, <code class="hljs inline no-lang">AddCommand</code> objects if the
-validation checks pass.</li> <li>The <code class="hljs inline no-lang">AddCommand</code> object is then passed back to the <code class="hljs inline no-lang">LogicManager</code> class for invocation of the <code class="hljs inline no-lang">execute</code> function
-which adds the new <code class="hljs inline no-lang">Date</code> object created into the existing <code class="hljs inline no-lang">Model</code> component.</li></ol> <div class="alert box-container alert-info" data-v-4d146e2c><!----> <div class="header-and-body" data-v-4d146e2c><!----> <div class="box-body-wrapper" data-v-4d146e2c><div class="icon-wrapper" data-v-4d146e2c><i class="fas fa-info" data-v-4d146e2c></i></div> <!----> <div class="contents" data-v-4d146e2c>
+in [`MainWindow.fxml`](https://github.com/se-edu/LoveBook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+
+The `UI` component,
+
+- executes user commands using the `Logic` component.
+- listens for changes to `Model` data so that the UI can be updated with the modified data.
+- keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+- depends on some classes in the `Model` component, as it displays `Date` object residing in the `Model`.
+
+[Scroll back to _Table of Contents_](#table-of-contents)
+
+### Logic component
+
+**API
+** : [`Logic.java`](https://github.com/AY2324S1-CS2103T-F10-2/tp/blob/master/src/main/java/seedu/lovebook/logic/Logic.java)
+
+Here's a (partial) class diagram of the `Logic` component:
+
+<span class="image-wrapper"><img src="/tp/diagrams/LogicClassDiagram.png" width="550" class="img-fluid rounded"> <span class="image-caption"></span></span>
+
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute(&quot;delete 1&quot;)` API
+call as an example.
+
+<span class="image-wrapper"><img src="/tp/diagrams/DeleteSequenceDiagram.png" alt="Interactions Inside the Logic Component for the `delete 1` Command" width="" class="img-fluid rounded"> <span class="image-caption"></span></span> <div class="alert box-container alert-info" data-v-4d146e2c><!----> <div class="header-and-body" data-v-4d146e2c><!----> <div class="box-body-wrapper" data-v-4d146e2c><div class="icon-wrapper" data-v-4d146e2c><i class="fas fa-info" data-v-4d146e2c></i></div> <!----> <div class="contents" data-v-4d146e2c>
+
+**Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of
+PlantUML, the lifeline reaches the end of diagram.
+
+</div> <!----></div></div></div>
+
+How the `Logic` component works:
+
+1. When `Logic` is called upon to execute a command, it is passed to an `LoveBookParser` object which in turn creates a
+   parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which
+   is executed by the `LogicManager`.
+1. The command can communicate with the `Model` when it is executed (e.g. to delete a date).
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+
+Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
+
+<span class="image-wrapper"><img src="/tp/diagrams/ParserClasses.png" width="600" class="img-fluid rounded"> <span class="image-caption"></span></span>
+
+How the parsing works:
+
+- When called upon to parse a user command, the `LoveBookParser` class creates an `XYZCommandParser` (`XYZ` is a
+  placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse
+  the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `LoveBookParser` returns back as
+  a `Command` object.
+- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
+  interface so that they can be treated similarly where possible e.g, during testing.
+
+[Scroll back to _Table of Contents_](#table-of-contents)
+
+### Model component
+
+**API
+** : [`Model.java`](https://github.com/AY2324S1-CS2103T-F10-2/tp/blob/master/src/main/java/seedu/lovebook/model/Model.java)
+
+<span class="image-wrapper"><img src="/tp/diagrams/ModelClassDiagram.png" width="450" class="img-fluid rounded"> <span class="image-caption"></span></span>
+
+The `Model` component,
+
+- stores the LoveBook data i.e., all `Date` objects (which are contained in a `UniqueDateList` object).
+- stores the currently 'selected' `Date` objects (e.g., results of a search query) as a separate _filtered_ list which
+  is exposed to outsiders as an unmodifiable `ObservableList<date>` that can be 'observed' e.g. the UI can be bound to
+  this list so that the UI automatically updates when the data in the list change.
+- stores a `UserPrefs` object that represents the user’s preferences. This is exposed to the outside as
+  a `ReadOnlyUserPrefs` objects.
+- stores a `DatePrefs` object that represents the user’s preferences for dates. This is exposed to the outside as
+  a `ReadOnlyDatePrefs` objects.
+- does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
+  should make sense on their own without depending on other components)
+
+[Scroll back to _Table of Contents_](#table-of-contents)
+
+### Storage component
+
+**API
+** : [`Storage.java`](https://github.com/AY2324S1-CS2103T-F10-2/tp/blob/master/src/main/java/seedu/lovebook/storage/Storage.java)
+
+<span class="image-wrapper"><img src="/tp/diagrams/StorageClassDiagram.png" width="550" class="img-fluid rounded"> <span class="image-caption"></span></span>
+
+The `Storage` component,
+
+- saves LoveBook data, date preferences data and user preference data in JSON format, and reads them back into
+  corresponding objects.
+- inherits from `LoveBookStorage`, `UserPrefsStorage` and `DatePrefsStorage`, which means it can be treated as
+  either one of three (if the functionality of only one is needed).
+- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
+  that belong to the `Model`)
+
+[Scroll back to _Table of Contents_](#table-of-contents)
+
+### Common classes
+
+Classes used by multiple components are in the `seedu.LoveBook.commons` package.
+
+---
+
+## **Implementation**
+
+Before diving into the implementation details, here's an overview of what changed from the AB-3 codebase.
+
+- Address, Phone Number, Email, Tags fields have been replaced with Gender, Age, Horoscope, Height and Income fields.
+- The `Person` class has been renamed to `Date` class, and most of the classes named `Personxxx` have been renamed
+  accordingly.
+- The GUI has been updated to make the application more visually appealing and user-friendly.
+- Several other commands like `filter`, `star`, `bestMatch` (not exhaustive) have been added to the application.
+
+The following class diagram shows the new `Date` class after the changes mentioned above.
+
+<span class="image-wrapper"><img src="/tp/diagrams/DateClassDiagram.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span>
+
+Moving on to the implementation details, the following sections describe how and why the main features of the app work.
+
+[Scroll back to _Table of Contents_](#table-of-contents)
+
+### Add Dates
+
+#### Implementation
+
+1. The add dates feature begins by passing the user input obtained from the `CommandBox` class in the `Ui` component to
+   the `LogicManager` class in the `Logic` component by invoking the `execute` function.
+2. The `LogicManager` class then passes the user input to the `LoveBookParser` class for parsing and validation.
+3. The `LoveBookParser` class then performs polymorphism and creates an `AddCommandParser` object for add command
+   specific parsing.
+4. The `LoveBookParser` class also separates the command word from the user input and passes the arguments from the user
+   input to the `AddCommandParser` object created above for parsing.
+5. The `AddCommandParser` carries out it's validation checks and creates new `Date`, `AddCommand` objects if the
+   validation checks pass.
+6. The `AddCommand` object is then passed back to the `LogicManager` class for invocation of the `execute` function
+   which adds the new `Date` object created into the existing `Model` component.
+
+<div class="alert box-container alert-info" data-v-4d146e2c><!----> <div class="header-and-body" data-v-4d146e2c><!----> <div class="box-body-wrapper" data-v-4d146e2c><div class="icon-wrapper" data-v-4d146e2c><i class="fas fa-info" data-v-4d146e2c></i></div> <!----> <div class="contents" data-v-4d146e2c>
     The `delete`, `edit` and `find` features are also implemented in a similiar manner.
-</div> <!----></div></div></div> <p>The sequence diagram notation of the above steps is shown below. <br></p> <span class="image-wrapper"><img src="/tp/diagrams/AddSequenceDiagram.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span> <p>The activity diagram notation of the above steps is shown below. <br></p> <span class="image-wrapper"><img src="/tp/diagrams/AddActivityDiagram.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span> <div class="alert box-container alert-info" data-v-4d146e2c><!----> <div class="header-and-body" data-v-4d146e2c><!----> <div class="box-body-wrapper" data-v-4d146e2c><div class="icon-wrapper" data-v-4d146e2c><i class="fas fa-info" data-v-4d146e2c></i></div> <!----> <div class="contents" data-v-4d146e2c>
+</div> <!----></div></div></div>
+
+The sequence diagram notation of the above steps is shown below. <br> <span class="image-wrapper"><img src="/tp/diagrams/AddSequenceDiagram.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span>
+
+The activity diagram notation of the above steps is shown below. <br> <span class="image-wrapper"><img src="/tp/diagrams/AddActivityDiagram.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span> <div class="alert box-container alert-info" data-v-4d146e2c><!----> <div class="header-and-body" data-v-4d146e2c><!----> <div class="box-body-wrapper" data-v-4d146e2c><div class="icon-wrapper" data-v-4d146e2c><i class="fas fa-info" data-v-4d146e2c></i></div> <!----> <div class="contents" data-v-4d146e2c>
     The UI and Storage components are not shown in the sequence and activity diagrams above for simplicity.
-</div> <!----></div></div></div> <h4 id="design-considerations">Design Considerations<a href="#design-considerations" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h4> <p><strong>Aspect: Adding dates with same name</strong></p> <ul><li><p><strong>Alternative 1 (current choice):</strong> Don't allow dates with the same name to be added.</p> <ul><li>Pros: Easy to implement (since all you have to do is find the name in the existing list of dates)</li> <li>Cons: Not very user-friendly (since the user may be dating multiple people with the same name)</li></ul></li> <li><p><strong>Alternative 2:</strong> Allow dates with the same name to be added.</p> <ul><li>Pros: More user-friendly (since user has more flexibility in adding dates)</li> <li>Cons: Slightly harder to implement (equality check will now take into account other details like age, gender,
-etc.)</li></ul></li></ul> <p><strong>Aspect: Allowing users to add dates without specifying all fields</strong></p> <ul><li><p><strong>Alternative 1 (current choice):</strong> Require users to specify all fields.</p> <ul><li>Pros: Easy to implement (since all you have to do is check if all fields are present)</li> <li>Cons: Not very user-friendly (since the user may not know all the details of the date)</li></ul></li> <li><p><strong>Alternative 2:</strong> Allow users to specify only some fields, and adding placeholder inputs to the remaining fields.</p> <ul><li>Pros: More user-friendly (since user has more flexibility in adding dates)</li> <li>Cons: Slightly harder to implement (since you have to check which fields are present). Will also affect the
-matching algorithm since these placeholder inputs have to be omitted.</li></ul></li></ul> <p><strong>Aspect: Adding dates to existing date list</strong></p> <ul><li><p><strong>Alternative 1 (current choice):</strong> Sorts the list on every addition, maintaining a lexically sorted list.</p> <ul><li>Pros: Easier to implement (since all you have to do is sort the list by name on every addition) and more visually
-appealing (since the user can easily see the list sorted by name)</li> <li>Cons: Not very user-friendly (since the user may want to see the date being added to the end of the list)</li></ul></li> <li><p><strong>Alternative 2:</strong> Adds the date to the end of the list.</p> <ul><li>Pros: More user-friendly (since user can easily see the date being added to the end of the list)</li> <li>Cons: Not very visually appealing (since the list appears to be unsorted and non uniform)</li></ul></li></ul> <p><a href="#table-of-contents">Scroll back to <em>Table of Contents</em></a></p> <h3 id="list-dates">List Dates<a href="#list-dates" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <ol><li>The list dates feature begins by passing the user input obtained from the <code class="hljs inline no-lang">CommandBox</code> class in the <code class="hljs inline no-lang">Ui</code> component to
-the <code class="hljs inline no-lang">LogicManager</code> class in the <code class="hljs inline no-lang">Logic</code> component by invoking the <code class="hljs inline no-lang">execute</code> function.</li> <li>The <code class="hljs inline no-lang">LogicManager</code> class then passes the user input to the <code class="hljs inline no-lang">LoveBookParser</code> class for parsing and validation.</li> <li>The <code class="hljs inline no-lang">LoveBookParser</code> class then performs polymorphism and creates a <code class="hljs inline no-lang">ListCommand</code> object for list specific commands.
-One thing to note here is that inputs like <code class="hljs inline no-lang">list 12</code> and <code class="hljs inline no-lang">list x</code> are accepted since they still contain <code class="hljs inline no-lang">list</code>.</li> <li>The <code class="hljs inline no-lang">ListCommand</code> object is then passed back to the <code class="hljs inline no-lang">LogicManager</code> class for invocation of the <code class="hljs inline no-lang">execute</code> function
-which sorts the list of dates in the <code class="hljs inline no-lang">Model</code> component and returns the sorted list to the <code class="hljs inline no-lang">Ui</code> component.</li></ol> <p>The sequence diagram notation of the above steps is shown below. <br></p> <span class="image-wrapper"><img src="/tp/diagrams/ListSequenceDiagram.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span> <h4 id="design-considerations-2">Design Considerations<a href="#design-considerations-2" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h4> <p><strong>Aspect: Ordering of dates</strong></p> <ul><li><p><strong>Alternative 1 (current choice):</strong> Sorts the list of dates by name.</p> <ul><li>Pros: Easier to implement (since all you have to do is sort the list by name on every addition) and more visually
-appealing (since the user can easily see the list sorted by name)</li> <li>Cons: Not very user-friendly (since the user may want to see the date being added to the end of the list) and less
-efficient (since you have to sort the list on every command).</li></ul></li> <li><p><strong>Alternative 2:</strong> List the dates in the order they were added.</p> <ul><li>Pros: More user-friendly (since user can easily see the date being added to the end of the list). More efficient (
-since you don't have to sort the list on every list command)</li> <li>Cons: Not very visually appealing (since the list appears to be unsorted and non uniform)</li></ul></li></ul> <p><a href="#table-of-contents">Scroll back to <em>Table of Contents</em></a></p> <h3 id="filter-dates">Filter dates<a href="#filter-dates" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <ol><li>The filter dates feature begins by passing the user input obtained from the <code class="hljs inline no-lang">CommandBox</code> class in the <code class="hljs inline no-lang">Ui</code> component to
-the <code class="hljs inline no-lang">LogicManager</code> class in the <code class="hljs inline no-lang">Logic</code> component by invoking the <code class="hljs inline no-lang">execute</code> function.</li> <li>The <code class="hljs inline no-lang">LogicManager</code> class then passes the user input to the <code class="hljs inline no-lang">LoveBookParser</code> class for parsing and validation.</li> <li>The <code class="hljs inline no-lang">LoveBookParser</code> class then performs polymorphism and creates a <code class="hljs inline no-lang">FilterCommandParser</code> object for filter command parsing.</li> <li>The <code class="hljs inline no-lang">FilterCommandParser</code> carries out it's validation checks and creates a <code class="hljs inline no-lang">FilterCommand</code> object containing a
-list of <code class="hljs inline no-lang">MetricContainsKeywordPredicate</code> objects if the checks pass.</li> <li>The <code class="hljs inline no-lang">FilterCommand</code> object is then passed back to the <code class="hljs inline no-lang">LogicManager</code> class for invocation of the <code class="hljs inline no-lang">execute</code> function which
-filters the list of dates in the <code class="hljs inline no-lang">Model</code> component and returns the filtered list to the <code class="hljs inline no-lang">Ui</code> component.</li></ol> <p>The <em>Activity</em> diagram summarises what happens after the user enters a filter command. <br></p> <span class="image-wrapper"><img src="/tp/diagrams/FilterActivity.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span> <p>The <em>Sequence</em> Diagram below shows how the components interact with each other for the scenario where the user issues
-the command <code class="hljs inline no-lang">filter name/John</code>. <br></p> <span class="image-wrapper"><img src="/tp/diagrams/FilterSequence.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span> <p><a href="#table-of-contents">Scroll back to <em>Table of Contents</em></a></p> <h3 id="sort-dates">Sort dates<a href="#sort-dates" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <ol><li>The sort dates feature begins by passing the user input obtained from the <code class="hljs inline no-lang">CommandBox</code> class in the <code class="hljs inline no-lang">Ui</code> component to
-the <code class="hljs inline no-lang">LogicManager</code> class in the <code class="hljs inline no-lang">Logic</code> component by invoking the <code class="hljs inline no-lang">execute</code> function.</li> <li>The <code class="hljs inline no-lang">LogicManager</code> class then passes the user input to the <code class="hljs inline no-lang">LoveBookParser</code> class for parsing and validation.</li> <li>The <code class="hljs inline no-lang">LoveBookParser</code> class then performs polymorphism and creates a <code class="hljs inline no-lang">SortCommandParser</code> object for sort command parsing.</li> <li>The <code class="hljs inline no-lang">SortCommandParser</code> object carries out its validation checks and creates a <code class="hljs inline no-lang">SortCommand</code> object containing a
-String prefix (eg. name/) and String sequence (increasing/decreasing) if all checks pass. One thing to note here is
-that the sequence and prefix are case-sensitive.</li> <li>The <code class="hljs inline no-lang">SortCommand</code> object is then passed back to the <code class="hljs inline no-lang">LogicManager</code> class for invocation of the <code class="hljs inline no-lang">execute</code> function which
-sorts the list of dates based on a specified metric in the specified order in the <code class="hljs inline no-lang">Model</code> component and returns the sorted
-list to the <code class="hljs inline no-lang">Ui</code> component.</li></ol> <p>The <em>Activity</em> diagram summarises what happens after the user enters a sort command. <br></p> <span class="image-wrapper"><img src="/tp/diagrams/SortActivity.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span> <p>The <em>Sequence</em> Diagram below shows how the components interact with each other for the scenario where the user issues
-the command <code class="hljs inline no-lang">sort name/increasing</code>. <br></p> <span class="image-wrapper"><img src="/tp/diagrams/SortSequence.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span> <p><a href="#table-of-contents">Scroll back to <em>Table of Contents</em></a></p> <h3 id="get-blind-date">Get Blind Date<a href="#get-blind-date" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <ol><li>The blind date feature begins by passing the user input obtained from the <code class="hljs inline no-lang">CommandBox</code> class in the <code class="hljs inline no-lang">Ui</code> component to
-the <code class="hljs inline no-lang">LogicManager</code> class in the <code class="hljs inline no-lang">Logic</code> component by invoking the <code class="hljs inline no-lang">execute</code> function.</li> <li>The <code class="hljs inline no-lang">LogicManager</code> class then passes the user input to the <code class="hljs inline no-lang">LoveBookParser</code> class for parsing and validation.</li> <li>The <code class="hljs inline no-lang">LoveBookParser</code> class then performs polymorphism and creates a <code class="hljs inline no-lang">BlindDateCommand</code> object.
-One thing to note here is that inputs like <code class="hljs inline no-lang">blindDate 12</code> and <code class="hljs inline no-lang">blindDate x</code> are accepted since they still contain <code class="hljs inline no-lang">list</code>.</li> <li>The <code class="hljs inline no-lang">BlindDateCommand</code> object is then passed back to the <code class="hljs inline no-lang">LogicManager</code> class for invocation of the <code class="hljs inline no-lang">execute</code> function
-which sorts the list of dates in the <code class="hljs inline no-lang">Model</code> component and returns the sorted list to the <code class="hljs inline no-lang">Ui</code> component.</li></ol> <p>The <em>Activity</em> diagram summarises what happens after the user enters a blindDate command. <br></p> <span class="image-wrapper"><img src="/tp/diagrams/BlindDateActivity.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span> <p>The <em>Sequence</em> Diagram below shows how the components interact with each other for the scenario where the user issues
-the command <code class="hljs inline no-lang">blindDate</code>. <br></p> <span class="image-wrapper"><img src="/tp/diagrams/BlindDateSequence.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span> <p><a href="#table-of-contents">Scroll back to <em>Table of Contents</em></a></p> <h3 id="get-best-match">Get best match<a href="#get-best-match" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <p>The best match feature is implemented using the <code class="hljs inline no-lang">BestMatchCommand</code> class. The <code class="hljs inline no-lang">BestMatchCommand</code> class iterates
-through the list of Dates, and calls <code class="hljs inline no-lang">GetScore</code> to get the score of the date based on height, age, horoscope and
-income.</p> <ol><li>The best match feature begins by passing the user input obtained from the <code class="hljs inline no-lang">CommandBox</code> class in the <code class="hljs inline no-lang">Ui</code>
-component to the <code class="hljs inline no-lang">LogicManager</code> class in the <code class="hljs inline no-lang">Logic</code> component by invoking the <code class="hljs inline no-lang">execute</code> function.</li> <li>The <code class="hljs inline no-lang">LogicManager</code> class then passes the user input to the <code class="hljs inline no-lang">LoveBookParser</code> class for parsing and validation.</li> <li>The <code class="hljs inline no-lang">LoveBookParser</code> class then performs polymorphism and creates a <code class="hljs inline no-lang">BestMatchCommand</code> object.</li> <li>The <code class="hljs inline no-lang">BestMatchCommand</code> object is then passed back to the <code class="hljs inline no-lang">LogicManager</code> class for invocation of the <code class="hljs inline no-lang">execute</code> function
-which then picks the <code class="hljs inline no-lang">Date</code> with the highest score in the <code class="hljs inline no-lang">Model</code> component by calling the <code class="hljs inline no-lang">getScore</code> function for all <code class="hljs inline no-lang">Date</code> objects in the <code class="hljs inline no-lang">dateList</code>.</li></ol> <p><strong>Scoring Dates</strong></p> <ul><li>Dates are scored upon 40, where each factor (age, height, income, horoscope) contributing 10 points each.</li> <li>The date's attributes are compared to the user's set preferences.</li> <li>Score for age = 10 - 2 * (age difference)</li> <li>Score for height = 10 - (height difference)</li> <li>Score for income = 10 - (income difference) / 250</li> <li>Score for horoscope = 10 if horoscope is the same, 0 if horoscope is different</li></ul> <p><strong>Ranking of Scores</strong></p> <ul><li>When the user requests for a Best Match, the Date with the highest score is taken.</li> <li>A Date with 0 points can be chosen.</li> <li>In cases where Dates are tied in score, the Date that was first input into LoveBook is chosen.</li></ul> <p>The <em>Sequence</em> Diagram below shows how the components interact with each other for the scenario where the user issues
-the command <code class="hljs inline no-lang">bestMatch</code></p> <span class="image-wrapper"><img src="/tp/diagrams/BestMatchSequence.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span> <p><a href="#table-of-contents">Scroll back to <em>Table of Contents</em></a></p> <h3 id="set-preferences">Set preferences<a href="#set-preferences" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <h4 id="implementation-3">Implementation<a href="#implementation-3" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h4> <ol><li>The set preferences feature begins by passing the user input obtained from the <code class="hljs inline no-lang">CommandBox</code> class in the <code class="hljs inline no-lang">Ui</code>
-component to the <code class="hljs inline no-lang">LogicManager</code> class in the <code class="hljs inline no-lang">Logic</code> component by invoking the <code class="hljs inline no-lang">execute</code> function.</li> <li>The <code class="hljs inline no-lang">LogicManager</code> class then passes the user input to the <code class="hljs inline no-lang">LoveBookParser</code> class for parsing and validation.</li> <li>The <code class="hljs inline no-lang">LoveBookParser</code> class then performs polymorphism and creates a <code class="hljs inline no-lang">SetPrefCommandParser</code> object for SetPrefCommand
-specific parsing.</li> <li>The <code class="hljs inline no-lang">LoveBookParser</code> class also separates the command word from the user input and passes the arguments from the user
-input to the <code class="hljs inline no-lang">SetPrefCommandParser</code> object created above for parsing.</li> <li>The <code class="hljs inline no-lang">SetPrefCommandParser</code> carries out it's validation checks and creates a new <code class="hljs inline no-lang">SetPrefCommand</code> object if the
-validation checks pass.</li> <li>The <code class="hljs inline no-lang">SetPrefCommand</code> object is then passed back to the <code class="hljs inline no-lang">LogicManager</code> class for invocation of the <code class="hljs inline no-lang">execute</code> function
-which then updates the date preferences in the <code class="hljs inline no-lang">Model</code> component.</li></ol> <p>The <code class="hljs inline no-lang">edit</code> feature is also implemented in a similar manner.</p> <p>The <em>Activity</em> Diagram notation of the above steps is shown below.</p> <span class="image-wrapper"><img src="/tp/diagrams/SetPrefActivity.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span> <p>The <em>Sequence</em> Diagram notation of the above steps is shown below.</p> <span class="image-wrapper"><img src="/tp/diagrams/SetPrefSequence.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span> <h4 id="design-considerations-3">Design Considerations<a href="#design-considerations-3" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h4> <p><strong>Aspect: Allowing users to set their date preferences on launch</strong></p> <ul><li><strong>Alternative 1 (current choice):</strong> Have default date preference (
-see <a href="/tp/UserGuide.html#managing-preferences-and-getting-matches">this</a>)
-<ul><li>Pros: Easy to implement (since all you have to do is set the default date preference). <code class="hljs inline no-lang">bestMatch</code> works
-immediately from the start.</li> <li>Cons: Not very user-friendly (since the user may not know all the details of the date)</li></ul></li> <li><strong>Alternative 2:</strong> Allow users to set their date preferences on launch
-<ul><li>Pros: More user-friendly (since user has more flexibility in setting their date preferences)</li> <li>Cons: Slightly harder to implement (since you have to check which fields are present). Will also affect the
-bestMatch
-algorithm since users may not know how to set their date preferences first.</li></ul></li></ul> <p><a href="#table-of-contents">Scroll back to <em>Table of Contents</em></a></p> <h3 id="show-preferences">Show preferences<a href="#show-preferences" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <h4 id="implementation-4">Implementation<a href="#implementation-4" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h4> <ol><li>The show preferences feature begins by passing the user input obtained from the <code class="hljs inline no-lang">CommandBox</code> class in the <code class="hljs inline no-lang">Ui</code>
-component to the <code class="hljs inline no-lang">LogicManager</code> class in the <code class="hljs inline no-lang">Logic</code> component by invoking the <code class="hljs inline no-lang">execute</code> function.</li> <li>The <code class="hljs inline no-lang">LogicManager</code> class then passes the user input to the <code class="hljs inline no-lang">LoveBookParser</code> class for parsing and validation.</li> <li>The <code class="hljs inline no-lang">LoveBookParser</code> class then performs polymorphism and creates a <code class="hljs inline no-lang">ShowPrefCommand</code> object.</li> <li>The <code class="hljs inline no-lang">ShowPrefCommand</code> object is then passed back to the <code class="hljs inline no-lang">LogicManager</code> class for invocation of the <code class="hljs inline no-lang">execute</code> function
-which then returns the preferences to the <code class="hljs inline no-lang">Ui</code> component.</li></ol> <p>The <em>Sequence</em> Diagram notation of the above steps is shown below.</p> <span class="image-wrapper"><img src="/tp/diagrams/ShowPrefSequenceDiagram.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span> <p><a href="#table-of-contents">Scroll back to <em>Table of Contents</em></a></p> <h3 id="star-dates">Star dates<a href="#star-dates" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <h4 id="implementation-5">Implementation<a href="#implementation-5" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h4> <ol><li>The star dates feature begins by passing the user input obtained from the <code class="hljs inline no-lang">CommandBox</code> class in the <code class="hljs inline no-lang">Ui</code> component to
-the <code class="hljs inline no-lang">LogicManager</code> class in the <code class="hljs inline no-lang">Logic</code> component by invoking the <code class="hljs inline no-lang">execute</code> function.</li> <li>The <code class="hljs inline no-lang">LogicManager</code> class then passes the user input to the <code class="hljs inline no-lang">LoveBookParser</code> class for parsing and validation.</li> <li>The <code class="hljs inline no-lang">LoveBookParser</code> class then performs polymorphism and creates a <code class="hljs inline no-lang">StarCommandParser</code> object for StarCommand specific parsing.</li> <li>The <code class="hljs inline no-lang">LoveBookParser</code> class also separates the command word from the user input and passes the arguments from the user input to the <code class="hljs inline no-lang">StarCommandParser</code> object created above for parsing.</li> <li>The <code class="hljs inline no-lang">StarCommandParser</code> carries out it's validation checks and creates a new <code class="hljs inline no-lang">StarCommand</code> object if the validation checks pass.</li> <li>The <code class="hljs inline no-lang">StarCommand</code> object is then passed back to the <code class="hljs inline no-lang">LogicManager</code> class for invocation of the <code class="hljs inline no-lang">execute</code> function which then updates the isStarred field for the date object with the respective index.</li></ol> <p>The <em>Activity</em> diagram summarises what happens after the user enters a star command.</p> <span class="image-wrapper"><img src="/tp/diagrams/StarActivity.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span> <p>The <em>Sequence</em> Diagram below shows how the components interact with each other for the scenario where the user issues
-the command <code class="hljs inline no-lang">star 1</code></p> <span class="image-wrapper"><img src="/tp/diagrams/StarSequence.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span> <h4 id="design-considerations-4">Design Considerations<a href="#design-considerations-4" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h4> <p><strong>Aspect: Choosing star to be an additional field for the add dates command</strong></p> <ul><li><strong>Alternative 1 (current choice):</strong> Dates are starred only through the star command
-<ul><li>Pros: Users can easily modify the starred status for any one of the dates by calling <code class="hljs inline no-lang">star INDEX</code></li> <li>Cons: Users cannot create a date and star it in one go using a single add dates command</li></ul></li> <li><strong>Alternative 2:</strong> Let star be a field for the add dates command
-<ul><li>Pros: You can create a date and star the date in one go</li> <li>Cons: Makes the add command extra lengthy. Furthermore, the premise of the star command is that it's to be used on
-an exceptional few dates. Hence, the time taken to fill in the extra star field, each time the user uses the
-add dates command, will exceed any potential time savings.</li></ul></li></ul> <p><a href="#table-of-contents">Scroll back to <em>Table of Contents</em></a></p> <h3 id="unstar-dates">Unstar dates<a href="#unstar-dates" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <h4 id="implementation-6">Implementation<a href="#implementation-6" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h4> <ol><li>The star dates feature begins by passing the user input obtained from the <code class="hljs inline no-lang">CommandBox</code> class in the <code class="hljs inline no-lang">Ui</code> component to
-the <code class="hljs inline no-lang">LogicManager</code> class in the <code class="hljs inline no-lang">Logic</code> component by invoking the <code class="hljs inline no-lang">execute</code> function.</li> <li>The <code class="hljs inline no-lang">LogicManager</code> class then passes the user input to the <code class="hljs inline no-lang">LoveBookParser</code> class for parsing and validation.</li> <li>The <code class="hljs inline no-lang">LoveBookParser</code> class then performs polymorphism and creates a <code class="hljs inline no-lang">UnstarCommandParser</code> object for UnstarCommand
-specific parsing.</li> <li>The <code class="hljs inline no-lang">LoveBookParser</code> class also separates the command word from the user input and passes the arguments from the user
-input to the <code class="hljs inline no-lang">UnstarCommandParser</code> object created above for parsing.</li> <li>The <code class="hljs inline no-lang">UnstarCommandParser</code> carries out it's validation checks and creates a new <code class="hljs inline no-lang">UnstarCommand</code> object if the
-validation checks pass.</li> <li>The <code class="hljs inline no-lang">UnstarCommand</code> object is then passed back to the <code class="hljs inline no-lang">LogicManager</code> class for invocation of the <code class="hljs inline no-lang">execute</code> function
-which then updates the isStarred field for the date object with the respective index.</li></ol> <p>The <em>Activity</em> diagram summarises what happens after the user enters a star command.</p> <span class="image-wrapper"><img src="/tp/diagrams/UnstarActivity.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span> <p>The <em>Sequence</em> Diagram below shows how the components interact with each other for the scenario where the user issues
-the command <code class="hljs inline no-lang">unstar 1</code></p> <span class="image-wrapper"><img src="/tp/diagrams/UnstarSequence.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span> <p><a href="#table-of-contents">Scroll back to <em>Table of Contents</em></a></p> <hr> <h2 id="documentation-logging-testing-configuration-dev-ops"><strong>Documentation, logging, testing, configuration, dev-ops</strong><a href="#documentation-logging-testing-configuration-dev-ops" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h2> <ul><li><a href="/tp/Documentation.html">Documentation guide</a></li> <li><a href="/tp/Testing.html">Testing guide</a></li> <li><a href="/tp/Logging.html">Logging guide</a></li> <li><a href="/tp/Configuration.html">Configuration guide</a></li> <li><a href="/tp/DevOps.html">DevOps guide</a></li></ul> <p><a href="#table-of-contents">Scroll back to <em>Table of Contents</em></a></p> <h2 id="appendix-requirements"><strong>Appendix: Requirements</strong><a href="#appendix-requirements" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h2> <h3 id="product-scope">Product scope<a href="#product-scope" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <p><strong>Target user profile</strong>:</p> <ul><li>active online dater</li> <li>has a need to manage a number of dates</li> <li>prefer desktop apps over other types</li> <li>can find, filter and organize their dates for better compatibility</li> <li>prefers typing to mouse interactions</li> <li>is reasonably comfortable using CLI apps</li></ul> <p><strong>Value proposition</strong>:
+</div> <!----></div></div></div>
+
+#### Design Considerations
+
+**Aspect: Adding dates with same name**
+
+- **Alternative 1 (current choice):** Don't allow dates with the same name to be added.
+
+  - Pros: Easy to implement (since all you have to do is find the name in the existing list of dates)
+  - Cons: Not very user-friendly (since the user may be dating multiple people with the same name)
+
+- **Alternative 2:** Allow dates with the same name to be added.
+  - Pros: More user-friendly (since user has more flexibility in adding dates)
+  - Cons: Slightly harder to implement (equality check will now take into account other details like age, gender,
+    etc.)
+
+**Aspect: Allowing users to add dates without specifying all fields**
+
+- **Alternative 1 (current choice):** Require users to specify all fields.
+
+  - Pros: Easy to implement (since all you have to do is check if all fields are present)
+  - Cons: Not very user-friendly (since the user may not know all the details of the date)
+
+- **Alternative 2:** Allow users to specify only some fields, and adding placeholder inputs to the remaining fields.
+  - Pros: More user-friendly (since user has more flexibility in adding dates)
+  - Cons: Slightly harder to implement (since you have to check which fields are present). Will also affect the
+    matching algorithm since these placeholder inputs have to be omitted.
+
+**Aspect: Adding dates to existing date list**
+
+- **Alternative 1 (current choice):** Sorts the list on every addition, maintaining a lexically sorted list.
+
+  - Pros: Easier to implement (since all you have to do is sort the list by name on every addition) and more visually
+    appealing (since the user can easily see the list sorted by name)
+  - Cons: Not very user-friendly (since the user may want to see the date being added to the end of the list)
+
+- **Alternative 2:** Adds the date to the end of the list.
+  - Pros: More user-friendly (since user can easily see the date being added to the end of the list)
+  - Cons: Not very visually appealing (since the list appears to be unsorted and non uniform)
+
+[Scroll back to _Table of Contents_](#table-of-contents)
+
+### List Dates
+
+1. The list dates feature begins by passing the user input obtained from the `CommandBox` class in the `Ui` component to
+   the `LogicManager` class in the `Logic` component by invoking the `execute` function.
+2. The `LogicManager` class then passes the user input to the `LoveBookParser` class for parsing and validation.
+3. The `LoveBookParser` class then performs polymorphism and creates a `ListCommand` object for list specific commands.
+   One thing to note here is that inputs like `list 12` and `list x` are accepted since they still contain `list`.
+4. The `ListCommand` object is then passed back to the `LogicManager` class for invocation of the `execute` function
+   which sorts the list of dates in the `Model` component and returns the sorted list to the `Ui` component.
+
+The sequence diagram notation of the above steps is shown below. <br> <span class="image-wrapper"><img src="/tp/diagrams/ListSequenceDiagram.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span>
+
+#### Design Considerations
+
+**Aspect: Ordering of dates**
+
+- **Alternative 1 (current choice):** Sorts the list of dates by name.
+
+  - Pros: Easier to implement (since all you have to do is sort the list by name on every addition) and more visually
+    appealing (since the user can easily see the list sorted by name)
+  - Cons: Not very user-friendly (since the user may want to see the date being added to the end of the list) and less
+    efficient (since you have to sort the list on every command).
+
+- **Alternative 2:** List the dates in the order they were added.
+  - Pros: More user-friendly (since user can easily see the date being added to the end of the list). More efficient (
+    since you don't have to sort the list on every list command)
+  - Cons: Not very visually appealing (since the list appears to be unsorted and non uniform)
+
+[Scroll back to _Table of Contents_](#table-of-contents)
+
+### Filter dates
+
+1. The filter dates feature begins by passing the user input obtained from the `CommandBox` class in the `Ui` component to
+   the `LogicManager` class in the `Logic` component by invoking the `execute` function.
+2. The `LogicManager` class then passes the user input to the `LoveBookParser` class for parsing and validation.
+3. The `LoveBookParser` class then performs polymorphism and creates a `FilterCommandParser` object for filter command parsing.
+4. The `FilterCommandParser` carries out it's validation checks and creates a `FilterCommand` object containing a
+   list of `MetricContainsKeywordPredicate` objects if the checks pass.
+5. The `FilterCommand` object is then passed back to the `LogicManager` class for invocation of the `execute` function which
+   filters the list of dates in the `Model` component and returns the filtered list to the `Ui` component.
+
+The _Activity_ diagram summarises what happens after the user enters a filter command. <br> <span class="image-wrapper"><img src="/tp/diagrams/FilterActivity.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span>
+
+The _Sequence_ Diagram below shows how the components interact with each other for the scenario where the user issues
+the command `filter name/John`. <br> <span class="image-wrapper"><img src="/tp/diagrams/FilterSequence.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span>
+
+[Scroll back to _Table of Contents_](#table-of-contents)
+
+### Sort dates
+
+1. The sort dates feature begins by passing the user input obtained from the `CommandBox` class in the `Ui` component to
+   the `LogicManager` class in the `Logic` component by invoking the `execute` function.
+2. The `LogicManager` class then passes the user input to the `LoveBookParser` class for parsing and validation.
+3. The `LoveBookParser` class then performs polymorphism and creates a `SortCommandParser` object for sort command parsing.
+4. The `SortCommandParser` object carries out its validation checks and creates a `SortCommand` object containing a
+   String prefix (eg. name/) and String sequence (increasing/decreasing) if all checks pass. One thing to note here is
+   that the sequence and prefix are case-sensitive.
+5. The `SortCommand` object is then passed back to the `LogicManager` class for invocation of the `execute` function which
+   sorts the list of dates based on a specified metric in the specified order in the `Model` component and returns the sorted
+   list to the `Ui` component.
+
+The _Activity_ diagram summarises what happens after the user enters a sort command. <br> <span class="image-wrapper"><img src="/tp/diagrams/SortActivity.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span>
+
+The _Sequence_ Diagram below shows how the components interact with each other for the scenario where the user issues
+the command `sort name/increasing`. <br> <span class="image-wrapper"><img src="/tp/diagrams/SortSequence.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span>
+
+[Scroll back to _Table of Contents_](#table-of-contents)
+
+### Get Blind Date
+
+1. The blind date feature begins by passing the user input obtained from the `CommandBox` class in the `Ui` component to
+   the `LogicManager` class in the `Logic` component by invoking the `execute` function.
+2. The `LogicManager` class then passes the user input to the `LoveBookParser` class for parsing and validation.
+3. The `LoveBookParser` class then performs polymorphism and creates a `BlindDateCommand` object.
+   One thing to note here is that inputs like `blindDate 12` and `blindDate x` are accepted since they still contain `list`.
+4. The `BlindDateCommand` object is then passed back to the `LogicManager` class for invocation of the `execute` function
+   which sorts the list of dates in the `Model` component and returns the sorted list to the `Ui` component.
+
+The _Activity_ diagram summarises what happens after the user enters a blindDate command. <br> <span class="image-wrapper"><img src="/tp/diagrams/BlindDateActivity.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span>
+
+The _Sequence_ Diagram below shows how the components interact with each other for the scenario where the user issues
+the command `blindDate`. <br> <span class="image-wrapper"><img src="/tp/diagrams/BlindDateSequence.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span>
+
+[Scroll back to _Table of Contents_](#table-of-contents)
+
+### Get best match
+
+The best match feature is implemented using the `BestMatchCommand` class. The `BestMatchCommand` class iterates
+through the list of Dates, and calls `GetScore` to get the score of the date based on height, age, horoscope and
+income.
+
+1. The best match feature begins by passing the user input obtained from the `CommandBox` class in the `Ui`
+   component to the `LogicManager` class in the `Logic` component by invoking the `execute` function.
+2. The `LogicManager` class then passes the user input to the `LoveBookParser` class for parsing and validation.
+3. The `LoveBookParser` class then performs polymorphism and creates a `BestMatchCommand` object.
+4. The `BestMatchCommand` object is then passed back to the `LogicManager` class for invocation of the `execute` function
+   which then picks the `Date` with the highest score in the `Model` component by calling the `getScore` function for all `Date` objects in the `dateList`.
+
+**Scoring Dates**
+
+- Dates are scored upon 40, where each factor (age, height, income, horoscope) contributing 10 points each.
+- The date's attributes are compared to the user's set preferences.
+- Score for age = 10 - 2 \* (age difference)
+- Score for height = 10 - (height difference)
+- Score for income = 10 - (income difference) / 250
+- Score for horoscope = 10 if horoscope is the same, 0 if horoscope is different
+
+**Ranking of Scores**
+
+- When the user requests for a Best Match, the Date with the highest score is taken.
+- A Date with 0 points can be chosen.
+- In cases where Dates are tied in score, the Date that was first input into LoveBook is chosen.
+
+The _Sequence_ Diagram below shows how the components interact with each other for the scenario where the user issues
+the command `bestMatch`
+
+<span class="image-wrapper"><img src="/tp/diagrams/BestMatchSequence.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span>
+
+[Scroll back to _Table of Contents_](#table-of-contents)
+
+### Set preferences
+
+#### Implementation
+
+1. The set preferences feature begins by passing the user input obtained from the `CommandBox` class in the `Ui`
+   component to the `LogicManager` class in the `Logic` component by invoking the `execute` function.
+2. The `LogicManager` class then passes the user input to the `LoveBookParser` class for parsing and validation.
+3. The `LoveBookParser` class then performs polymorphism and creates a `SetPrefCommandParser` object for SetPrefCommand
+   specific parsing.
+4. The `LoveBookParser` class also separates the command word from the user input and passes the arguments from the user
+   input to the `SetPrefCommandParser` object created above for parsing.
+5. The `SetPrefCommandParser` carries out it's validation checks and creates a new `SetPrefCommand` object if the
+   validation checks pass.
+6. The `SetPrefCommand` object is then passed back to the `LogicManager` class for invocation of the `execute` function
+   which then updates the date preferences in the `Model` component.
+
+The `edit` feature is also implemented in a similar manner.
+
+The _Activity_ Diagram notation of the above steps is shown below.
+
+<span class="image-wrapper"><img src="/tp/diagrams/SetPrefActivity.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span>
+
+The _Sequence_ Diagram notation of the above steps is shown below.
+
+<span class="image-wrapper"><img src="/tp/diagrams/SetPrefSequence.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span>
+
+#### Design Considerations
+
+**Aspect: Allowing users to set their date preferences on launch**
+
+- **Alternative 1 (current choice):** Have default date preference (
+  see [this](UserGuide.md#managing-preferences-and-getting-matches))
+  - Pros: Easy to implement (since all you have to do is set the default date preference). `bestMatch` works
+    immediately from the start.
+  - Cons: Not very user-friendly (since the user may not know all the details of the date)
+- **Alternative 2:** Allow users to set their date preferences on launch
+  - Pros: More user-friendly (since user has more flexibility in setting their date preferences)
+  - Cons: Slightly harder to implement (since you have to check which fields are present). Will also affect the
+    bestMatch
+    algorithm since users may not know how to set their date preferences first.
+
+[Scroll back to _Table of Contents_](#table-of-contents)
+
+### Show preferences
+
+#### Implementation
+
+1. The show preferences feature begins by passing the user input obtained from the `CommandBox` class in the `Ui`
+   component to the `LogicManager` class in the `Logic` component by invoking the `execute` function.
+2. The `LogicManager` class then passes the user input to the `LoveBookParser` class for parsing and validation.
+3. The `LoveBookParser` class then performs polymorphism and creates a `ShowPrefCommand` object.
+4. The `ShowPrefCommand` object is then passed back to the `LogicManager` class for invocation of the `execute` function
+   which then returns the preferences to the `Ui` component.
+
+The _Sequence_ Diagram notation of the above steps is shown below.
+
+<span class="image-wrapper"><img src="/tp/diagrams/ShowPrefSequenceDiagram.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span>
+
+[Scroll back to _Table of Contents_](#table-of-contents)
+
+### Star dates
+
+#### Implementation
+
+1. The star dates feature begins by passing the user input obtained from the `CommandBox` class in the `Ui` component to
+   the `LogicManager` class in the `Logic` component by invoking the `execute` function.
+2. The `LogicManager` class then passes the user input to the `LoveBookParser` class for parsing and validation.
+3. The `LoveBookParser` class then performs polymorphism and creates a `StarCommandParser` object for StarCommand specific parsing.
+4. The `LoveBookParser` class also separates the command word from the user input and passes the arguments from the user input to the `StarCommandParser` object created above for parsing.
+5. The `StarCommandParser` carries out it's validation checks and creates a new `StarCommand` object if the validation checks pass.
+6. The `StarCommand` object is then passed back to the `LogicManager` class for invocation of the `execute` function which then updates the isStarred field for the date object with the respective index.
+
+The _Activity_ diagram summarises what happens after the user enters a star command.
+
+<span class="image-wrapper"><img src="/tp/diagrams/StarActivity.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span>
+
+The _Sequence_ Diagram below shows how the components interact with each other for the scenario where the user issues
+the command `star 1`
+
+<span class="image-wrapper"><img src="/tp/diagrams/StarSequence.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span>
+
+#### Design Considerations
+
+**Aspect: Choosing star to be an additional field for the add dates command**
+
+- **Alternative 1 (current choice):** Dates are starred only through the star command
+  - Pros: Users can easily modify the starred status for any one of the dates by calling `star INDEX`
+  - Cons: Users cannot create a date and star it in one go using a single add dates command
+- **Alternative 2:** Let star be a field for the add dates command
+  - Pros: You can create a date and star the date in one go
+  - Cons: Makes the add command extra lengthy. Furthermore, the premise of the star command is that it's to be used on
+    an exceptional few dates. Hence, the time taken to fill in the extra star field, each time the user uses the
+    add dates command, will exceed any potential time savings.
+
+[Scroll back to _Table of Contents_](#table-of-contents)
+
+### Unstar dates
+
+#### Implementation
+
+1. The star dates feature begins by passing the user input obtained from the `CommandBox` class in the `Ui` component to
+   the `LogicManager` class in the `Logic` component by invoking the `execute` function.
+2. The `LogicManager` class then passes the user input to the `LoveBookParser` class for parsing and validation.
+3. The `LoveBookParser` class then performs polymorphism and creates a `UnstarCommandParser` object for UnstarCommand
+   specific parsing.
+4. The `LoveBookParser` class also separates the command word from the user input and passes the arguments from the user
+   input to the `UnstarCommandParser` object created above for parsing.
+5. The `UnstarCommandParser` carries out it's validation checks and creates a new `UnstarCommand` object if the
+   validation checks pass.
+6. The `UnstarCommand` object is then passed back to the `LogicManager` class for invocation of the `execute` function
+   which then updates the isStarred field for the date object with the respective index.
+
+The _Activity_ diagram summarises what happens after the user enters a star command.
+
+<span class="image-wrapper"><img src="/tp/diagrams/UnstarActivity.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span>
+
+The _Sequence_ Diagram below shows how the components interact with each other for the scenario where the user issues
+the command `unstar 1`
+
+<span class="image-wrapper"><img src="/tp/diagrams/UnstarSequence.png" width="" class="img-fluid rounded"> <span class="image-caption"></span></span>
+
+[Scroll back to _Table of Contents_](#table-of-contents)
+
+---
+
+## **Documentation, logging, testing, configuration, dev-ops**
+
+- [Documentation guide](Documentation.md)
+- [Testing guide](Testing.md)
+- [Logging guide](Logging.md)
+- [Configuration guide](Configuration.md)
+- [DevOps guide](DevOps.md)
+
+[Scroll back to _Table of Contents_](#table-of-contents)
+
+## **Appendix: Requirements**
+
+### Product scope
+
+**Target user profile**:
+
+- active online dater
+- has a need to manage a number of dates
+- prefer desktop apps over other types
+- can find, filter and organize their dates for better compatibility
+- prefers typing to mouse interactions
+- is reasonably comfortable using CLI apps
+
+**Value proposition**:
 LoveBook simplifies the process of storing information of dates and assessing compatibility between user and his/her
 dates by taking into account the user’s preferences, thereby enhancing the efficiency and effectiveness of finding the
-perfect match.</p> <p><a href="#table-of-contents">Scroll back to <em>Table of Contents</em></a></p> <h3 id="user-stories">User stories<a href="#user-stories" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <p>Priorities: High (must have) - <code class="hljs inline no-lang">* * *</code>, Medium (nice to have) - <code class="hljs inline no-lang">* *</code>, Low (unlikely to have) - <code class="hljs inline no-lang">*</code></p> <div class="table-responsive"><table class="markbind-table table table-bordered table-striped"><thead><tr><th>Priority</th> <th>As a …​</th> <th>I want to …​</th> <th>So that I can…​</th></tr></thead> <tbody><tr><td><code class="hljs inline no-lang">* *</code></td> <td>new user</td> <td>be greeted with a welcome message when i launch the app</td> <td>feel welcome</td></tr> <tr><td><code class="hljs inline no-lang">* *</code></td> <td>new user</td> <td>be able to get help when i'm stuck</td> <td>better navigate through the application</td></tr> <tr><td><code class="hljs inline no-lang">* * *</code></td> <td>dater</td> <td>be able to key my preferred height in my preferences</td> <td>get recommended a suitable date based on our height compatibility</td></tr> <tr><td><code class="hljs inline no-lang">* * *</code></td> <td>dater</td> <td>be able to key in my preferred horoscope in my preferences</td> <td>get recommended a suitable date based on our horoscope compatibility</td></tr> <tr><td><code class="hljs inline no-lang">* * *</code></td> <td>dater</td> <td>be able to key in my preferred income in my preferences</td> <td>get recommended a suitable date based on our income compatibility</td></tr> <tr><td><code class="hljs inline no-lang">* * *</code></td> <td>dater</td> <td>be able to key in my preferred age in my preferences</td> <td>get recommended a suitable date based on our age compatibility</td></tr> <tr><td><code class="hljs inline no-lang">* * *</code></td> <td>dater</td> <td>be able to edit my entered preferences</td> <td>change my preferences in the event I change my mind</td></tr> <tr><td><code class="hljs inline no-lang">* * *</code></td> <td>dater</td> <td>be able to view my preferences</td> <td>know what my preferences are in the event I forget</td></tr> <tr><td><code class="hljs inline no-lang">* * *</code></td> <td>dater</td> <td>be able to pull up a list of my previous dates</td> <td>keep track of who I have dated in the past</td></tr> <tr><td><code class="hljs inline no-lang">* * *</code></td> <td>dater</td> <td>be able to delete dates from my list</td> <td>limit my dating list to those who I am still interested in</td></tr> <tr><td><code class="hljs inline no-lang">* * *</code></td> <td>dater</td> <td>to be able create a new date entry with his/her gender, name, income, height, horoscope and age</td> <td>keep my list growing</td></tr> <tr><td><code class="hljs inline no-lang">* * *</code></td> <td>dater</td> <td>to be able to edit the details of my date</td> <td>keep my dates details up to date</td></tr> <tr><td><code class="hljs inline no-lang">* * *</code></td> <td>dater</td> <td>to be able to be recommended a complete random date</td> <td>have an exciting surprise date that day</td></tr> <tr><td><code class="hljs inline no-lang">* * *</code></td> <td>dater</td> <td>to be able to filter my dates based on a particular metric</td> <td>find dates that I am interested in amidst my long and ever growing list</td></tr> <tr><td><code class="hljs inline no-lang">* * *</code></td> <td>dater</td> <td>to be able to be recommended the most compatible date for me</td> <td>optimize my chance of finding my one true love</td></tr> <tr><td><code class="hljs inline no-lang">* * *</code></td> <td>dater</td> <td>to be able to star dates</td> <td>keep track of outstanding dates</td></tr> <tr><td><code class="hljs inline no-lang">* * *</code></td> <td>dater</td> <td>to be able to unstar dates</td> <td>keep focused on people who are still outstanding to me</td></tr> <tr><td><code class="hljs inline no-lang">* * *</code></td> <td>dater</td> <td>to be able to sort my dates based on a particular metric</td> <td>find dates that I am interested in amidst my long and ever growing list</td></tr> <tr><td><code class="hljs inline no-lang">* * *</code></td> <td>dater</td> <td>to be able to find dates based on their name</td> <td>locate a date easily</td></tr> <tr><td><code class="hljs inline no-lang">* *</code></td> <td>lazy user</td> <td>to be able to clear all the dates in my list</td> <td>start afresh with a new date list</td></tr></tbody></table></div><p><a href="#table-of-contents">Scroll back to <em>Table of Contents</em></a></p> <h3 id="use-cases">Use cases<a href="#use-cases" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <p>(For all use cases below, the <strong>System</strong> is the <code class="hljs inline no-lang">LoveBook</code> and the <strong>Actor</strong> is the <code class="hljs inline no-lang">user</code>, unless specified otherwise)</p> <h4 id="use-case-list-all-dates">Use Case: List All Dates<a href="#use-case-list-all-dates" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h4> <p><strong>Main Success Scenario (MSS):</strong></p> <ol><li><p>User requests to list all dates.</p></li> <li><p>LoveBook shows a list of dates.</p> <p>Use case ends. <br></p></li></ol> <p><strong>Extensions:</strong></p> <p>2a. The list is empty.</p> <pre><code>2a1. Use case ends.
-</code></pre> <h4 id="use-case-add-a-date">Use Case: Add a Date<a href="#use-case-add-a-date" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h4> <p><strong>Main Success Scenario (MSS):</strong></p> <ol><li><p>User inputs command for adding date to LoveBook.</p></li> <li><p>LoveBook validates the command.</p></li> <li><p>LoveBook adds the new date to the LoveBook.</p></li> <li><p>LoveBook displays a confirmation message.</p> <p>Use case ends. <br></p></li></ol> <p><strong>Extensions:</strong></p> <p>2a. The command is invalid (Fields do not exist, invalid format).</p> <pre><code>2a1. LoveBook displays an error message.
-2a2. Use case ends.
-</code></pre> <h4 id="use-case-finding-a-date">Use Case: Finding a Date<a href="#use-case-finding-a-date" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h4> <p><strong>Main Success Scenario (MSS):</strong></p> <ol><li>User inputs command to search for a date in LoveBook.</li> <li>LoveBook displays all Dates with names that match the keyword.</li></ol> <p>Use case ends. <br></p> <p><strong>Extensions:</strong></p> <p>2a. No dates match the search query.</p> <pre><code>2a1. LoveBook displays an error message.
-2a2. Use case ends.
-</code></pre> <h4 id="use-case-edit-a-date-s-details">Use Case: Edit a Date's Details<a href="#use-case-edit-a-date-s-details" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h4> <p><strong>Main Success Scenario (MSS):</strong></p> <ol><li>User inputs command to edit a Date's details.</li> <li>LoveBook validates the command.</li> <li>LoveBook updates the Date's details with the new information.</li> <li>LoveBook displays a confirmation message.</li></ol> <p>Use case ends. <br></p> <p><strong>Extensions:</strong></p> <p>2a. The command is invalid (Fields do not exist, invalid format).</p> <pre><code>2a1. LoveBook shows an error message.
-2a2. Use case ends.
-</code></pre> <p>2b. No fields to edit are given.</p> <pre><code>2b1. LoveBook displays an error message.
-2b2. Use case ends.
-</code></pre> <p>2c. Edited field(s) are invalid.</p> <pre><code>2c1. LoveBook displays an error message.
-2c2 Use case ends.
-</code></pre> <p>2d. Index provided is invalid.</p> <pre><code>2d1. LoveBook displays an error message.
-2d2. Use case ends.
-</code></pre> <h4 id="use-case-delete-a-date">Use Case: Delete a Date<a href="#use-case-delete-a-date" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h4> <p><strong>Main Success Scenario (MSS):</strong></p> <ol><li>User inputs command to delete Date.</li> <li>Date is deleted from LoveBook.</li> <li>LoveBook displays a confirmation message.</li></ol> <p>Use case ends. <br></p> <p><strong>Extensions:</strong></p> <p>2a. Index provided is invalid.</p> <pre><code>2a1. LoveBook displays an error message.
-2a2. Use case ends.
-</code></pre> <h4 id="use-case-set-preferences">Use Case: Set Preferences<a href="#use-case-set-preferences" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h4> <p><strong>Main Success Scenario (MSS):</strong></p> <ol><li>User inputs command to set Preferences.</li> <li>LoveBook validates the command.</li> <li>LoveBook updates the preferences with the new information.</li> <li>LoveBook displays a confirmation message.</li></ol> <p>Use case ends. <br></p> <p><strong>Extensions:</strong></p> <p>2a. The command is invalid (Preference does not exist, invalid format).</p> <pre><code>2a1. LoveBook displays an error message.
-2a2. Use case ends.
-</code></pre> <p>2b. No Preferences to set are given.</p> <pre><code>2b1. LoveBook displays an error message.
-2b2. Use case ends.
-</code></pre> <p>2c. Field(s) are invalid.</p> <pre><code>2c1. LoveBook displays an error message.
-2c2. Use case ends.
-</code></pre> <p>2d. There are multiple values for a single field</p> <ul><li>LoveBook displays a message indicating that there are multiple values for a single field.</li> <li>Use case ends.</li></ul> <h4 id="use-case-show-preferences">Use Case: Show Preferences<a href="#use-case-show-preferences" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h4> <p><strong>Main Success Scenario (MSS):</strong></p> <ol><li>User inputs command to show preferences.</li> <li>LoveBook displays the preferences.</li></ol> <p>Use case ends. <br></p> <p><strong>Extensions:</strong></p> <p>1a. No Preferences were previously set.</p> <pre><code>1a1. LoveBook displays the default preferences.
-1a2. Use case ends.
-</code></pre> <h4 id="use-case-get-blind-date">Use Case: Get Blind Date<a href="#use-case-get-blind-date" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h4> <p><strong>Main Success Scenario (MSS):</strong></p> <ol><li>User inputs command to get a blind Date.</li> <li>LoveBook displays a random Date.</li> <li>LoveBook displays a confirmation message.</li></ol> <p>Use case ends. <br></p> <p><strong>Extensions:</strong></p> <p>1a. The list is empty.</p> <pre><code>1a1. LoveBook displays an error message.
-1a2. Use case ends.
-</code></pre> <h4 id="use-case-filter-dates">Use Case: Filter Dates<a href="#use-case-filter-dates" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h4> <p><strong>Main Success Scenario (MSS):</strong></p> <ol><li>User inputs command to filter dates.</li> <li>LoveBook validates the command.</li> <li>LoveBook shows a list of dates which are filtered based on the metric(s) given.</li></ol> <p>Use case ends. <br></p> <p><strong>Extensions:</strong></p> <p>2a. The list is empty.</p> <pre><code>2a1. Use case ends.
-</code></pre> <p>2b. The command is invalid (Metrics do not exist, invalid format).</p> <pre><code>2b1.LoveBook displays an error message.
-2b2. Use case ends.
-</code></pre> <p>2c. No metric to filter by are given.</p> <pre><code>2c1. LoveBook displays an error message.
-2c2. Use case ends.
-</code></pre> <p>2d. Field(s) are invalid.</p> <pre><code>2d1. LoveBook displays an error message.
-2d2. Use case ends.
-</code></pre> <h4 id="use-case-sort-dates">Use Case: Sort Dates<a href="#use-case-sort-dates" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h4> <p><strong>Main Success Scenario (MSS):</strong></p> <ol><li>User inputs command to sort Dates</li> <li>LoveBook validated the command.</li> <li>LoveBook shows a list of dates which are sorted based on the comparator given.</li></ol> <p>Use case ends. <br></p> <p><strong>Extensions:</strong></p> <p>2a. The list is empty.</p> <pre><code>2a1. Use case ends.
-</code></pre> <p>2b. The command is invalid (Comparator does not exist, invalid format).</p> <pre><code>2b1. LoveBook displays an error message.
-2b2. Use case ends.
-</code></pre> <p>2c. No comparator to sort is given.</p> <pre><code>2c1. LoveBook displays an error message.
-2c2. Use case ends.
-</code></pre> <p>2d. Comparator is invalid.</p> <pre><code>2d1. LoveBook displays an error message.
-2d2. Use case ends.
-</code></pre> <h4 id="use-case-get-best-match">Use Case: Get Best Match<a href="#use-case-get-best-match" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h4> <p><strong>Main Success Scenario (MSS):</strong></p> <ol><li>User requests for their best match.</li> <li>LoveBook displays the best match.</li></ol> <p>Use case ends. <br></p> <p><strong>Extensions:</strong></p> <p>1a. The list is empty.</p> <pre><code>1a1. LoveBook displays an error message.
-1a2. Use case ends.
-</code></pre> <p><a href="#table-of-contents">Scroll back to <em>Table of Contents</em></a></p> <h3 id="non-functional-requirements">Non-Functional Requirements<a href="#non-functional-requirements" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <ol><li>Usability and Accessibility: The application should provide clear and user-friendly CLI prompts and menus.
-It should support keyboard shortcuts for navigation to enhance accessibility.</li> <li>Scalability: The LoveBook should be capable of storing at least 10,000 contacts without a significant decrease in
-performance.</li> <li>Reliability and Availability: The application should have a 99.9% uptime, ensuring that users can access their
-contacts reliably.
-It should automatically back up LoveBook data daily to prevent data loss.</li> <li>Portability: The CLI application should be compatible with multiple operating systems, including Windows, macOS, and
-Linux.</li></ol> <p><a href="#table-of-contents">Scroll back to <em>Table of Contents</em></a></p> <h3 id="glossary">Glossary<a href="#glossary" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <div class="table-responsive"><table class="markbind-table table table-bordered table-striped"><thead><tr><th>Term</th> <th>Definition</th></tr></thead> <tbody><tr><td>Date</td> <td>A person that the user is interested in and is currently seeing.</td></tr> <tr><td>Metric</td> <td>A certain characteristic of a date. (e.g. Gender, Height)</td></tr> <tr><td>Command</td> <td>Text that the user types into the application to perform an action.</td></tr> <tr><td>Parameter</td> <td>A value that the user provides to the application when executing a command. (e.g. in <code class="hljs inline no-lang">gender/M</code> M is a parameter)</td></tr> <tr><td>GUI</td> <td>Graphical User Interface</td></tr> <tr><td>CLI</td> <td>Command Line Interface</td></tr> <tr><td>Mainstream OS</td> <td>Windows, Linux, Unix, OS-X</td></tr></tbody></table></div><p><a href="#table-of-contents">Scroll back to <em>Table of Contents</em></a></p> <hr> <h2 id="appendix-instructions-for-manual-testing"><strong>Appendix: Instructions for Manual Testing</strong><a href="#appendix-instructions-for-manual-testing" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h2> <p>Given below are instructions to test the app manually.
+perfect match.
+
+[Scroll back to _Table of Contents_](#table-of-contents)
+
+### User stories
+
+Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+
+| Priority | As a …​   | I want to …​                                                                                    | So that I can…​                                                         |
+| -------- | --------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `* *`    | new user  | be greeted with a welcome message when i launch the app                                         | feel welcome                                                            |
+| `* *`    | new user  | be able to get help when i'm stuck                                                              | better navigate through the application                                 |
+| `* * *`  | dater     | be able to key my preferred height in my preferences                                            | get recommended a suitable date based on our height compatibility       |
+| `* * *`  | dater     | be able to key in my preferred horoscope in my preferences                                      | get recommended a suitable date based on our horoscope compatibility    |
+| `* * *`  | dater     | be able to key in my preferred income in my preferences                                         | get recommended a suitable date based on our income compatibility       |
+| `* * *`  | dater     | be able to key in my preferred age in my preferences                                            | get recommended a suitable date based on our age compatibility          |
+| `* * *`  | dater     | be able to edit my entered preferences                                                          | change my preferences in the event I change my mind                     |
+| `* * *`  | dater     | be able to view my preferences                                                                  | know what my preferences are in the event I forget                      |
+| `* * *`  | dater     | be able to pull up a list of my previous dates                                                  | keep track of who I have dated in the past                              |
+| `* * *`  | dater     | be able to delete dates from my list                                                            | limit my dating list to those who I am still interested in              |
+| `* * *`  | dater     | to be able create a new date entry with his/her gender, name, income, height, horoscope and age | keep my list growing                                                    |
+| `* * *`  | dater     | to be able to edit the details of my date                                                       | keep my dates details up to date                                        |
+| `* * *`  | dater     | to be able to be recommended a complete random date                                             | have an exciting surprise date that day                                 |
+| `* * *`  | dater     | to be able to filter my dates based on a particular metric                                      | find dates that I am interested in amidst my long and ever growing list |
+| `* * *`  | dater     | to be able to be recommended the most compatible date for me                                    | optimize my chance of finding my one true love                          |
+| `* * *`  | dater     | to be able to star dates                                                                        | keep track of outstanding dates                                         |
+| `* * *`  | dater     | to be able to unstar dates                                                                      | keep focused on people who are still outstanding to me                  |
+| `* * *`  | dater     | to be able to sort my dates based on a particular metric                                        | find dates that I am interested in amidst my long and ever growing list |
+| `* * *`  | dater     | to be able to find dates based on their name                                                    | locate a date easily                                                    |
+| `* *`    | lazy user | to be able to clear all the dates in my list                                                    | start afresh with a new date list                                       |
+
+[Scroll back to _Table of Contents_](#table-of-contents)
+
+### Use cases
+
+(For all use cases below, the **System** is the `LoveBook` and the **Actor** is the `user`, unless specified otherwise)
+
+#### Use Case: List All Dates
+
+**Main Success Scenario (MSS):**
+
+1. User requests to list all dates.
+2. LoveBook shows a list of dates.
+
+   Use case ends. <br>
+
+**Extensions:**
+
+2a. The list is empty.
+
+    2a1. Use case ends.
+
+#### Use Case: Add a Date
+
+**Main Success Scenario (MSS):**
+
+1. User inputs command for adding date to LoveBook.
+2. LoveBook validates the command.
+3. LoveBook adds the new date to the LoveBook.
+4. LoveBook displays a confirmation message.
+
+   Use case ends. <br>
+
+**Extensions:**
+
+2a. The command is invalid (Fields do not exist, invalid format).
+
+    2a1. LoveBook displays an error message.
+    2a2. Use case ends.
+
+#### Use Case: Finding a Date
+
+**Main Success Scenario (MSS):**
+
+1. User inputs command to search for a date in LoveBook.
+2. LoveBook displays all Dates with names that match the keyword.
+
+Use case ends. <br>
+
+**Extensions:**
+
+2a. No dates match the search query.
+
+    2a1. LoveBook displays an error message.
+    2a2. Use case ends.
+
+#### Use Case: Edit a Date's Details
+
+**Main Success Scenario (MSS):**
+
+1. User inputs command to edit a Date's details.
+2. LoveBook validates the command.
+3. LoveBook updates the Date's details with the new information.
+4. LoveBook displays a confirmation message.
+
+Use case ends. <br>
+
+**Extensions:**
+
+2a. The command is invalid (Fields do not exist, invalid format).
+
+    2a1. LoveBook shows an error message.
+    2a2. Use case ends.
+
+2b. No fields to edit are given.
+
+    2b1. LoveBook displays an error message.
+    2b2. Use case ends.
+
+2c. Edited field(s) are invalid.
+
+    2c1. LoveBook displays an error message.
+    2c2 Use case ends.
+
+2d. Index provided is invalid.
+
+    2d1. LoveBook displays an error message.
+    2d2. Use case ends.
+
+#### Use Case: Delete a Date
+
+**Main Success Scenario (MSS):**
+
+1. User inputs command to delete Date.
+2. Date is deleted from LoveBook.
+3. LoveBook displays a confirmation message.
+
+Use case ends. <br>
+
+**Extensions:**
+
+2a. Index provided is invalid.
+
+    2a1. LoveBook displays an error message.
+    2a2. Use case ends.
+
+#### Use Case: Set Preferences
+
+**Main Success Scenario (MSS):**
+
+1. User inputs command to set Preferences.
+2. LoveBook validates the command.
+3. LoveBook updates the preferences with the new information.
+4. LoveBook displays a confirmation message.
+
+Use case ends. <br>
+
+**Extensions:**
+
+2a. The command is invalid (Preference does not exist, invalid format).
+
+    2a1. LoveBook displays an error message.
+    2a2. Use case ends.
+
+2b. No Preferences to set are given.
+
+    2b1. LoveBook displays an error message.
+    2b2. Use case ends.
+
+2c. Field(s) are invalid.
+
+    2c1. LoveBook displays an error message.
+    2c2. Use case ends.
+
+2d. There are multiple values for a single field
+
+- LoveBook displays a message indicating that there are multiple values for a single field.
+- Use case ends.
+
+#### Use Case: Show Preferences
+
+**Main Success Scenario (MSS):**
+
+1. User inputs command to show preferences.
+2. LoveBook displays the preferences.
+
+Use case ends. <br>
+
+**Extensions:**
+
+1a. No Preferences were previously set.
+
+    1a1. LoveBook displays the default preferences.
+    1a2. Use case ends.
+
+#### Use Case: Get Blind Date
+
+**Main Success Scenario (MSS):**
+
+1. User inputs command to get a blind Date.
+2. LoveBook displays a random Date.
+3. LoveBook displays a confirmation message.
+
+Use case ends. <br>
+
+**Extensions:**
+
+1a. The list is empty.
+
+    1a1. LoveBook displays an error message.
+    1a2. Use case ends.
+
+#### Use Case: Filter Dates
+
+**Main Success Scenario (MSS):**
+
+1. User inputs command to filter dates.
+2. LoveBook validates the command.
+3. LoveBook shows a list of dates which are filtered based on the metric(s) given.
+
+Use case ends. <br>
+
+**Extensions:**
+
+2a. The list is empty.
+
+    2a1. Use case ends.
+
+2b. The command is invalid (Metrics do not exist, invalid format).
+
+    2b1.LoveBook displays an error message.
+    2b2. Use case ends.
+
+2c. No metric to filter by are given.
+
+    2c1. LoveBook displays an error message.
+    2c2. Use case ends.
+
+2d. Field(s) are invalid.
+
+    2d1. LoveBook displays an error message.
+    2d2. Use case ends.
+
+#### Use Case: Sort Dates
+
+**Main Success Scenario (MSS):**
+
+1. User inputs command to sort Dates
+2. LoveBook validated the command.
+3. LoveBook shows a list of dates which are sorted based on the comparator given.
+
+Use case ends. <br>
+
+**Extensions:**
+
+2a. The list is empty.
+
+    2a1. Use case ends.
+
+2b. The command is invalid (Comparator does not exist, invalid format).
+
+    2b1. LoveBook displays an error message.
+    2b2. Use case ends.
+
+2c. No comparator to sort is given.
+
+    2c1. LoveBook displays an error message.
+    2c2. Use case ends.
+
+2d. Comparator is invalid.
+
+    2d1. LoveBook displays an error message.
+    2d2. Use case ends.
+
+#### Use Case: Get Best Match
+
+**Main Success Scenario (MSS):**
+
+1. User requests for their best match.
+2. LoveBook displays the best match.
+
+Use case ends. <br>
+
+**Extensions:**
+
+1a. The list is empty.
+
+    1a1. LoveBook displays an error message.
+    1a2. Use case ends.
+
+[Scroll back to _Table of Contents_](#table-of-contents)
+
+### Non-Functional Requirements
+
+1. Usability and Accessibility: The application should provide clear and user-friendly CLI prompts and menus.
+   It should support keyboard shortcuts for navigation to enhance accessibility.
+2. Scalability: The LoveBook should be capable of storing at least 10,000 contacts without a significant decrease in
+   performance.
+3. Reliability and Availability: The application should have a 99.9% uptime, ensuring that users can access their
+   contacts reliably.
+   It should automatically back up LoveBook data daily to prevent data loss.
+4. Portability: The CLI application should be compatible with multiple operating systems, including Windows, macOS, and
+   Linux.
+
+[Scroll back to _Table of Contents_](#table-of-contents)
+
+### Glossary
+
+| Term          | Definition                                                                                                        |
+| ------------- | ----------------------------------------------------------------------------------------------------------------- |
+| Date          | A person that the user is interested in and is currently seeing.                                                  |
+| Metric        | A certain characteristic of a date. (e.g. Gender, Height)                                                         |
+| Command       | Text that the user types into the application to perform an action.                                               |
+| Parameter     | A value that the user provides to the application when executing a command. (e.g. in `gender/M` M is a parameter) |
+| GUI           | Graphical User Interface                                                                                          |
+| CLI           | Command Line Interface                                                                                            |
+| Mainstream OS | Windows, Linux, Unix, OS-X                                                                                        |
+
+[Scroll back to _Table of Contents_](#table-of-contents)
+
+---
+
+## **Appendix: Instructions for Manual Testing**
+
+Given below are instructions to test the app manually.
 You are recommended to start with an empty LoveBook and follow the instructions sequentially
 in order for the example commands provided to be relevant.
-You can refer to the user guide for more details on the features.</p> <p><strong>Note:</strong> These instructions only provide a starting point for testers to work on;
-testers are expected to do more <em>exploratory</em> testing.</p> <h3 id="launch">Launch<a href="#launch" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <ol><li>Initial Launch.</li> <li>Download the jar file and copy it into an empty folder.</li> <li>Double-click the jar file.</li> <li>Expected output: The program runs and shows the GUI. Note that the window size may not be optimum.</li></ol> <h3 id="viewing-help">Viewing Help<a href="#viewing-help" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <ol><li>Opening the Help window.</li> <li>Type the following help command into the text field.<br> <code class="hljs inline no-lang">help</code></li> <li>Press enter.</li> <li>Expected Output: The GUI shows a popup with a message and a link to the User Guide.</li></ol> <h3 id="adding-dates">Adding Dates<a href="#adding-dates" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <ol><li>Adding a Date.</li> <li>Type the following add command into the text field.<br> <code class="hljs inline no-lang">add name/Cleon age/22 gender/F height/176 horoscope/Taurus income/3000</code></li> <li>Press enter.</li> <li>Expected Output: The GUI shows the added date in the LoveBook.</li></ol> <h3 id="editing-dates">Editing Dates<a href="#editing-dates" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <div class="alert box-container alert-success" data-v-4d146e2c><!----> <div class="header-and-body" data-v-4d146e2c><!----> <div class="box-body-wrapper" data-v-4d146e2c><div class="icon-wrapper" data-v-4d146e2c><i class="fas fa-lightbulb" data-v-4d146e2c></i></div> <!----> <div class="contents" data-v-4d146e2c><p data-v-4d146e2c><em data-v-4d146e2c>Prerequisites:</em> Have at least 1 date in the LoveBook.</p></div> <!----></div></div></div> <ol><li>Editing a Date by index.</li> <li>Type the following edit date command into the text field.<br> <code class="hljs inline no-lang">edit 1 horoscope/Cancer name/John</code></li> <li>Press enter.</li> <li>Expected Output: The GUI shows the newly-edited fields for the Date at the specified index. (Sequence doesn't matter)</li></ol> <h3 id="finding-dates">Finding Dates<a href="#finding-dates" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <h4 id="finding-dates-by-single-name">Finding Dates by single name<a href="#finding-dates-by-single-name" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h4> <div class="alert box-container alert-success" data-v-4d146e2c><!----> <div class="header-and-body" data-v-4d146e2c><!----> <div class="box-body-wrapper" data-v-4d146e2c><div class="icon-wrapper" data-v-4d146e2c><i class="fas fa-lightbulb" data-v-4d146e2c></i></div> <!----> <div class="contents" data-v-4d146e2c><p data-v-4d146e2c><em data-v-4d146e2c>Prerequisites:</em> Have at least 1 date with name containing &quot;John&quot; in the LoveBook.</p></div> <!----></div></div></div> <ol><li>Type the following find command into the text field.<br> <code class="hljs inline no-lang">find John</code></li> <li>Press enter.</li> <li>Expected Output: The date with specified name shown.</li></ol> <h4 id="finding-dates-by-multiple-names">Finding Dates by multiple names<a href="#finding-dates-by-multiple-names" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h4> <div class="alert box-container alert-success" data-v-4d146e2c><!----> <div class="header-and-body" data-v-4d146e2c><!----> <div class="box-body-wrapper" data-v-4d146e2c><div class="icon-wrapper" data-v-4d146e2c><i class="fas fa-lightbulb" data-v-4d146e2c></i></div> <!----> <div class="contents" data-v-4d146e2c><p data-v-4d146e2c><em data-v-4d146e2c>Prerequisites:</em> Have at least 2 dates (named &quot;John&quot; and &quot;Cleon&quot;) in the LoveBook.</p></div> <!----></div></div></div> <ol><li>Type the following find command into the text field.<br> <code class="hljs inline no-lang">find John Cleon</code></li> <li>Press enter.</li> <li>Expected Output: The dates with the specified names shown.</li></ol> <h4 id="listing-all-dates">Listing all Dates<a href="#listing-all-dates" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h4> <ol><li>Type the following list command into the text field.<br> <code class="hljs inline no-lang">list</code></li> <li>Press enter.</li> <li>Expected Output: The GUI shows all dates in LoveBook.</li></ol> <h3 id="filtering-dates">Filtering Dates<a href="#filtering-dates" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <ol><li>Filtering Dates by metric (e.g. name, age, height).</li> <li>Type the following filter command into the text field.<br> <code class="hljs inline no-lang">filter age/22</code></li> <li>Press enter.</li> <li>Expected Output: The GUI shows all dates with age 22 in LoveBook.</li></ol> <h3 id="finding-a-blind-date">Finding a Blind Date<a href="#finding-a-blind-date" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <div class="alert box-container alert-success" data-v-4d146e2c><!----> <div class="header-and-body" data-v-4d146e2c><!----> <div class="box-body-wrapper" data-v-4d146e2c><div class="icon-wrapper" data-v-4d146e2c><i class="fas fa-lightbulb" data-v-4d146e2c></i></div> <!----> <div class="contents" data-v-4d146e2c><p data-v-4d146e2c><em data-v-4d146e2c>Prerequisites:</em> Have at least 1 date in the LoveBook. Best to have more than 5 dates.</p></div> <!----></div></div></div> <ol><li>Finding a Blind Date</li> <li>Type the following command into the text field.<br> <code class="hljs inline no-lang">blindDate</code></li> <li>Press enter.</li> <li>Expected Output: The GUI shows a blind date in LoveBook.</li></ol> <h3 id="exiting-the-application">Exiting the Application<a href="#exiting-the-application" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <ol><li>Exiting the app</li> <li>Use the <code class="hljs inline no-lang">exit</code> command or click the 'X' button in the top right corner.</li> <li>Expected: The app closes.</li></ol> <h3 id="saving-data">Saving Data<a href="#saving-data" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <ol><li><p>Saving window preferences</p> <ol><li>Resize the window to an optimum size, preferably full screen. Close the window.</li> <li>Re-launch the app by double-clicking the jar file.</li> <li>Expected Output: The most recent window size and location is retained.</li> <li>Note: The window looks best under 1920 x 1080 resolution, 125% scale.</li></ol></li> <li><p>Saving data</p> <ol><li>Launch the app by double-clicking the jar file.</li> <li>Execute an add command to add a <code class="hljs inline no-lang">Date</code> in the database.</li> <li>Close the app.</li> <li>Expected: A <code class="hljs inline no-lang">data</code> folder is created under the current repository where the jar file is located.</li></ol></li></ol> <p><a href="#table-of-contents">Scroll back to <em>Table of Contents</em></a></p> <hr> <h2 id="appendix-effort"><strong>Appendix: Effort</strong><a href="#appendix-effort" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h2> <p>Implementing LoveBook was not straightforward and often required us to brainstorm as a team to solve the challenges faced.
-Given below is a summary of the effort our team has put into developing LoveBook as well as challenges faced.</p> <h3 id="evolving-of-ab3-into-lovebook">Evolving of AB3 into LoveBook<a href="#evolving-of-ab3-into-lovebook" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <p>As we wanted to morph AB3 to fit into our idea of LoveBook, we had to refactor a large portion of the initial codebase
+You can refer to the user guide for more details on the features.
+
+**Note:** These instructions only provide a starting point for testers to work on;
+testers are expected to do more _exploratory_ testing.
+
+### Launch
+
+1. Initial Launch.
+2. Download the jar file and copy it into an empty folder.
+3. Double-click the jar file.
+4. Expected output: The program runs and shows the GUI. Note that the window size may not be optimum.
+
+### Viewing Help
+
+1. Opening the Help window.
+2. Type the following help command into the text field.<br>
+   `help`
+3. Press enter.
+4. Expected Output: The GUI shows a popup with a message and a link to the User Guide.
+
+### Adding Dates
+
+1. Adding a Date.
+2. Type the following add command into the text field.<br>
+   `add name/Cleon age/22 gender/F height/176 horoscope/Taurus income/3000`
+3. Press enter.
+4. Expected Output: The GUI shows the added date in the LoveBook.
+
+### Editing Dates
+
+<div class="alert box-container alert-success" data-v-4d146e2c><!----> <div class="header-and-body" data-v-4d146e2c><!----> <div class="box-body-wrapper" data-v-4d146e2c><div class="icon-wrapper" data-v-4d146e2c><i class="fas fa-lightbulb" data-v-4d146e2c></i></div> <!----> <div class="contents" data-v-4d146e2c>
+
+_Prerequisites:_ Have at least 1 date in the LoveBook.
+
+</div> <!----></div></div></div>
+
+1. Editing a Date by index.
+2. Type the following edit date command into the text field.<br>
+   `edit 1 horoscope/Cancer name/John`
+3. Press enter.
+4. Expected Output: The GUI shows the newly-edited fields for the Date at the specified index. (Sequence doesn't matter)
+
+### Finding Dates
+
+#### Finding Dates by single name
+
+<div class="alert box-container alert-success" data-v-4d146e2c><!----> <div class="header-and-body" data-v-4d146e2c><!----> <div class="box-body-wrapper" data-v-4d146e2c><div class="icon-wrapper" data-v-4d146e2c><i class="fas fa-lightbulb" data-v-4d146e2c></i></div> <!----> <div class="contents" data-v-4d146e2c>
+
+_Prerequisites:_ Have at least 1 date with name containing &quot;John&quot; in the LoveBook.
+
+</div> <!----></div></div></div>
+
+1. Type the following find command into the text field.<br>
+   `find John`
+2. Press enter.
+3. Expected Output: The date with specified name shown.
+
+#### Finding Dates by multiple names
+
+<div class="alert box-container alert-success" data-v-4d146e2c><!----> <div class="header-and-body" data-v-4d146e2c><!----> <div class="box-body-wrapper" data-v-4d146e2c><div class="icon-wrapper" data-v-4d146e2c><i class="fas fa-lightbulb" data-v-4d146e2c></i></div> <!----> <div class="contents" data-v-4d146e2c>
+
+_Prerequisites:_ Have at least 2 dates (named &quot;John&quot; and &quot;Cleon&quot;) in the LoveBook.
+
+</div> <!----></div></div></div>
+
+1. Type the following find command into the text field.<br>
+   `find John Cleon`
+2. Press enter.
+3. Expected Output: The dates with the specified names shown.
+
+#### Listing all Dates
+
+1. Type the following list command into the text field.<br>
+   `list`
+2. Press enter.
+3. Expected Output: The GUI shows all dates in LoveBook.
+
+### Filtering Dates
+
+1. Filtering Dates by metric (e.g. name, age, height).
+2. Type the following filter command into the text field.<br>
+   `filter age/22`
+3. Press enter.
+4. Expected Output: The GUI shows all dates with age 22 in LoveBook.
+
+### Finding a Blind Date
+
+<div class="alert box-container alert-success" data-v-4d146e2c><!----> <div class="header-and-body" data-v-4d146e2c><!----> <div class="box-body-wrapper" data-v-4d146e2c><div class="icon-wrapper" data-v-4d146e2c><i class="fas fa-lightbulb" data-v-4d146e2c></i></div> <!----> <div class="contents" data-v-4d146e2c>
+
+_Prerequisites:_ Have at least 1 date in the LoveBook. Best to have more than 5 dates.
+
+</div> <!----></div></div></div>
+
+1. Finding a Blind Date
+2. Type the following command into the text field.<br>
+   `blindDate`
+3. Press enter.
+4. Expected Output: The GUI shows a blind date in LoveBook.
+
+### Exiting the Application
+
+1. Exiting the app
+2. Use the `exit` command or click the 'X' button in the top right corner.
+3. Expected: The app closes.
+
+### Saving Data
+
+1. Saving window preferences
+
+   1. Resize the window to an optimum size, preferably full screen. Close the window.
+   2. Re-launch the app by double-clicking the jar file.
+   3. Expected Output: The most recent window size and location is retained.
+   4. Note: The window looks best under 1920 x 1080 resolution, 125% scale.
+
+2. Saving data
+   1. Launch the app by double-clicking the jar file.
+   2. Execute an add command to add a `Date` in the database.
+   3. Close the app.
+   4. Expected: A `data` folder is created under the current repository where the jar file is located.
+
+[Scroll back to _Table of Contents_](#table-of-contents)
+
+---
+
+## **Appendix: Effort**
+
+Implementing LoveBook was not straightforward and often required us to brainstorm as a team to solve the challenges faced.
+Given below is a summary of the effort our team has put into developing LoveBook as well as challenges faced.
+
+### Evolving of AB3 into LoveBook
+
+As we wanted to morph AB3 to fit into our idea of LoveBook, we had to refactor a large portion of the initial codebase
 and implement several new classes to get the basic minimum viable product of LoveBook.
 This included creating the Date class and its associated inner field classes. We also had to update how the application
 will store Dates and DatePrefs separately. In addition, many previous commands of AB3 had to be refactored or changed,
 and we added several new commands to LoveBook as well. Eventually, we were able to successfully implement both the Date
-and DatePref classes and all their associated commands.</p> <p>One challenge we faced was implementing the bestMatch feature. Given the tight timeline of the team project, we decided
+and DatePref classes and all their associated commands.
+
+One challenge we faced was implementing the bestMatch feature. Given the tight timeline of the team project, we decided
 to do a simple implementation of this feature that does not provide user with much flexibility. If given more time, we would like
 to develop this further by incorporating the use of artificial intelligence, as it is a relevant feature that will be used in the real
-world and brings value to our target users.</p> <h3 id="revamping-of-ui">Revamping of UI<a href="#revamping-of-ui" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h3> <p>Our dedication to enhancing the aesthetics of LoveBook is highlighted by our attention to visual representation.
+world and brings value to our target users.
+
+### Revamping of UI
+
+Our dedication to enhancing the aesthetics of LoveBook is highlighted by our attention to visual representation.
 We went beyond mere textual displays, incorporating visually engaging elements such as gender icons, horoscope symbols,
 and star command visual cues, all implemented using JavaFX. These features not only contribute to the overall visual
 appeal of the application but also serve a functional purpose in providing users with quick and intuitive insights into
 important date attributes. As our team was unfamiliar with JavaFX initially, it took us a great amount of time and
-effort to produce an eventual satisfactory and working UI that we were proud to adopt and incorporate into our application.</p> <p><a href="#table-of-contents">Scroll back to <em>Table of Contents</em></a></p> <p><a href="#table-of-contents">Scroll back to <em>Table of Contents</em></a></p> <h2 id="appendix-planned-enhancements"><strong>Appendix: Planned Enhancements</strong><a href="#appendix-planned-enhancements" onclick="event.stopPropagation()" class="fa fa-anchor"></a></h2> <ol><li><p>Improve the command parser to be more robust. Some examples include:</p> <ul><li>Gender entered while adding a new date is case-sensitive. We are planning to make it case-insensitive.</li> <li>Adding dates with the same name is currently not allowed. We are planning to allow this.</li> <li>Allowing some fields to be optional if user doesn't have access to the information. For example, if the user does
-not know the income of the date, he/she can leave it blank. Currently, this is not allowed. We are planning to
-allow this.</li></ul></li> <li><p>Improve the income field to be more robust</p> <ul><li>Currently, the income field is unable to accept a range of values, which might not be inclusive of people who
-have careers with variable income.</li> <li>Additionally, right now the income field does not accept a value of 0. This is not inclusive towards students
-who may not have any income. Hence, we plan to modify the field to accept a value of 0, on top of supporting a
-range of values</li></ul></li> <li><p>Improve issues regarding sorting stability</p> <ul><li>Currently, you are able to sort the dates by a specific field. However, if we sort by income for instance, and two
-dates have the same value, then when one of those two dates are modified by operations such as star or edit, the
-order of the two of them can change. The dates are still sorted in order, just that the stability is disrupted. We
-intend to improve upon our star and edit commands such that they do not disrupt the stability in the future.</li></ul></li> <li><p>Improve the filter feature to be more robust. Some examples include:</p> <ul><li>Currently, the filter feature only allows the user to filter by metrics limited to name, age, gender and height.
-We are planning to allow the user to filter by other metrics such as horoscope and income.</li> <li>Currently, the filter feature only allows the user to filter by a single keyword for a single metric. We are
-planning to allow the user to filter by multiple keywords.</li></ul></li> <li><p>Improve the error message to be more comprehensive</p> <ul><li>Currently, the error message for user that key in multiple invalid keywords only spots the first invalid keyword.
-We are planning to allow the user to know all the invalid keywords that he/she has keyed in.</li> <li>Currently, the error message for filter command with duplicate fields only display the invalid field value error. We are
-planning to allow the user to know that he/she has keyed in duplicate fields.</li></ul></li> <li><p>Improve the message displayed when the user tries to perform an operation on an empty list</p> <ul><li>Currently, for some commands like edit and sort, the message displayed is simply based on the validity check of the parameters and it does not tell the user that the
-list is empty. For instance, when the user sorts an empty list, the message displayed is &quot;Sorted!&quot; which is not very helpful. Hence, we are planning to tell the user that the list is empty and that the operation cannot be performed.</li></ul></li> <li><p>Improve the presets bar feature to be more comprehensive and clear</p> <ul><li>Currently, the presets bar feature only accommodates for the commands: <code class="hljs inline no-lang">add</code>, <code class="hljs inline no-lang">edit</code>, <code class="hljs inline no-lang">delete</code>, <code class="hljs inline no-lang">setP</code> and <code class="hljs inline no-lang">showP</code>.</li> <li>In the future, we plan to add more presets buttons for all 16 commands in the application.</li> <li>Furthermore, even though there's <code class="hljs inline no-lang">clear</code> command, the button &quot;clear&quot; removes all text in the command box, making
-it ambiguous. We plan to change this in a future iteration like a trash can icon.</li></ul></li> <li><p>Improve the filter and sort command formats</p> <ul><li>Currently, the filter and sort commands do not have a strict format. For example, if the user enters a filter command
-with at least one valid metric and valid metric value, the filter command will still be executed successfully. We plan
-to come up with a stricter filter and sort format in the future to make it more user-friendly.</li></ul></li> <li><p>Improve the best match feature to be more flexible</p> <ul><li>Currently, the best match feature gives equal weightage to all characteristics: <code class="hljs inline no-lang">Income</code>, <code class="hljs inline no-lang">Age</code>, <code class="hljs inline no-lang">Height</code> and <code class="hljs inline no-lang">Horoscope</code></li> <li>To better suit the user preferences, we plan to make the weightage customizable, so users can change the weightage for each characteristic</li></ul></li></ol> <p><a href="#table-of-contents">Scroll back to <em>Table of Contents</em></a></p></div> <nav id="page-nav" data-v-e6005420><div class="nav-component slim-scroll" data-v-e6005420><nav id="mb-page-nav" class="nav nav-pills flex-column my-0 small no-flex-wrap" data-v-e6005420><a class="nav-link py-1" href="#lovebook-developer-guide" data-v-e6005420>LoveBook Developer Guide‎</a> <nav class="nav nav-pills flex-column my-0 nested no-flex-wrap" data-v-e6005420><a class="nav-link py-1" href="#overview" data-v-e6005420>Overview‎</a> <a class="nav-link py-1" href="#acknowledgements" data-v-e6005420>Acknowledgements‎</a> <a class="nav-link py-1" href="#table-of-contents" data-v-e6005420>Table of Contents‎</a> <a class="nav-link py-1" href="#setting-up-getting-started" data-v-e6005420>Setting up, getting started‎</a> <a class="nav-link py-1" href="#design" data-v-e6005420>Design‎</a> <nav class="nav nav-pills flex-column my-0 nested no-flex-wrap" data-v-e6005420><a class="nav-link py-1" href="#architecture" data-v-e6005420>Architecture‎</a> <a class="nav-link py-1" href="#ui-component" data-v-e6005420>UI component‎</a> <a class="nav-link py-1" href="#logic-component" data-v-e6005420>Logic component‎</a> <a class="nav-link py-1" href="#model-component" data-v-e6005420>Model component‎</a> <a class="nav-link py-1" href="#storage-component" data-v-e6005420>Storage component‎</a> <a class="nav-link py-1" href="#common-classes" data-v-e6005420>Common classes‎</a></nav> <a class="nav-link py-1" href="#implementation" data-v-e6005420>Implementation‎</a> <nav class="nav nav-pills flex-column my-0 nested no-flex-wrap" data-v-e6005420><a class="nav-link py-1" href="#add-dates" data-v-e6005420>Add Dates‎</a> <a class="nav-link py-1" href="#list-dates" data-v-e6005420>List Dates‎</a> <a class="nav-link py-1" href="#filter-dates" data-v-e6005420>Filter dates‎</a> <a class="nav-link py-1" href="#sort-dates" data-v-e6005420>Sort dates‎</a> <a class="nav-link py-1" href="#get-blind-date" data-v-e6005420>Get Blind Date‎</a> <a class="nav-link py-1" href="#get-best-match" data-v-e6005420>Get best match‎</a> <a class="nav-link py-1" href="#set-preferences" data-v-e6005420>Set preferences‎</a> <a class="nav-link py-1" href="#show-preferences" data-v-e6005420>Show preferences‎</a> <a class="nav-link py-1" href="#star-dates" data-v-e6005420>Star dates‎</a> <a class="nav-link py-1" href="#unstar-dates" data-v-e6005420>Unstar dates‎</a></nav> <a class="nav-link py-1" href="#documentation-logging-testing-configuration-dev-ops" data-v-e6005420>Documentation, logging, testing, configuration, dev-ops‎</a> <a class="nav-link py-1" href="#appendix-requirements" data-v-e6005420>Appendix: Requirements‎</a> <nav class="nav nav-pills flex-column my-0 nested no-flex-wrap" data-v-e6005420><a class="nav-link py-1" href="#product-scope" data-v-e6005420>Product scope‎</a> <a class="nav-link py-1" href="#user-stories" data-v-e6005420>User stories‎</a> <a class="nav-link py-1" href="#use-cases" data-v-e6005420>Use cases‎</a> <a class="nav-link py-1" href="#non-functional-requirements" data-v-e6005420>Non-Functional Requirements‎</a> <a class="nav-link py-1" href="#glossary" data-v-e6005420>Glossary‎</a></nav> <a class="nav-link py-1" href="#appendix-instructions-for-manual-testing" data-v-e6005420>Appendix: Instructions for Manual Testing‎</a> <nav class="nav nav-pills flex-column my-0 nested no-flex-wrap" data-v-e6005420><a class="nav-link py-1" href="#launch" data-v-e6005420>Launch‎</a> <a class="nav-link py-1" href="#viewing-help" data-v-e6005420>Viewing Help‎</a> <a class="nav-link py-1" href="#adding-dates" data-v-e6005420>Adding Dates‎</a> <a class="nav-link py-1" href="#editing-dates" data-v-e6005420>Editing Dates‎</a> <a class="nav-link py-1" href="#finding-dates" data-v-e6005420>Finding Dates‎</a> <a class="nav-link py-1" href="#filtering-dates" data-v-e6005420>Filtering Dates‎</a> <a class="nav-link py-1" href="#finding-a-blind-date" data-v-e6005420>Finding a Blind Date‎</a> <a class="nav-link py-1" href="#exiting-the-application" data-v-e6005420>Exiting the Application‎</a> <a class="nav-link py-1" href="#saving-data" data-v-e6005420>Saving Data‎</a></nav> <a class="nav-link py-1" href="#appendix-effort" data-v-e6005420>Appendix: Effort‎</a> <nav class="nav nav-pills flex-column my-0 nested no-flex-wrap" data-v-e6005420><a class="nav-link py-1" href="#evolving-of-ab3-into-lovebook" data-v-e6005420>Evolving of AB3 into LoveBook‎</a> <a class="nav-link py-1" href="#revamping-of-ui" data-v-e6005420>Revamping of UI‎</a></nav> <a class="nav-link py-1" href="#appendix-planned-enhancements" data-v-e6005420>Appendix: Planned Enhancements‎</a></nav> <!----></nav></div> <!----></nav> <div aria-hidden="true" class="scroll-top-button fa-lg d-print-none" style="display:none;bottom:2%;right:2%;position:fixed;"><i class="fas fa-arrow-circle-up"></i></div></div> <footer><div class="text-center"><small>[<span><strong>Powered by</strong></span> <img src="https://markbind.org/favicon.ico" width="30"> <a href="https://markbind.org/">MarkBind 5.1.0</a>, generated on Tue, 14 Nov 2023, 11:06:05 GMT+8]</small></div></footer></div>
+effort to produce an eventual satisfactory and working UI that we were proud to adopt and incorporate into our application.
+
+[Scroll back to _Table of Contents_](#table-of-contents)
+
+[Scroll back to _Table of Contents_](#table-of-contents)
+
+## **Appendix: Planned Enhancements**
+
+1. Improve the command parser to be more robust. Some examples include:
+
+   - Gender entered while adding a new date is case-sensitive. We are planning to make it case-insensitive.
+   - Adding dates with the same name is currently not allowed. We are planning to allow this.
+   - Allowing some fields to be optional if user doesn't have access to the information. For example, if the user does
+     not know the income of the date, he/she can leave it blank. Currently, this is not allowed. We are planning to
+     allow this.
+
+2. Improve the income field to be more robust
+
+   - Currently, the income field is unable to accept a range of values, which might not be inclusive of people who
+     have careers with variable income.
+   - Additionally, right now the income field does not accept a value of 0. This is not inclusive towards students
+     who may not have any income. Hence, we plan to modify the field to accept a value of 0, on top of supporting a
+     range of values
+
+3. Improve issues regarding sorting stability
+
+   - Currently, you are able to sort the dates by a specific field. However, if we sort by income for instance, and two
+     dates have the same value, then when one of those two dates are modified by operations such as star or edit, the
+     order of the two of them can change. The dates are still sorted in order, just that the stability is disrupted. We
+     intend to improve upon our star and edit commands such that they do not disrupt the stability in the future.
+
+4. Improve the filter feature to be more robust. Some examples include:
+
+   - Currently, the filter feature only allows the user to filter by metrics limited to name, age, gender and height.
+     We are planning to allow the user to filter by other metrics such as horoscope and income.
+   - Currently, the filter feature only allows the user to filter by a single keyword for a single metric. We are
+     planning to allow the user to filter by multiple keywords.
+
+5. Improve the error message to be more comprehensive
+
+   - Currently, the error message for user that key in multiple invalid keywords only spots the first invalid keyword.
+     We are planning to allow the user to know all the invalid keywords that he/she has keyed in.
+   - Currently, the error message for filter command with duplicate fields only display the invalid field value error. We are
+     planning to allow the user to know that he/she has keyed in duplicate fields.
+
+6. Improve the message displayed when the user tries to perform an operation on an empty list
+
+   - Currently, for some commands like edit and sort, the message displayed is simply based on the validity check of the parameters and it does not tell the user that the
+     list is empty. For instance, when the user sorts an empty list, the message displayed is &quot;Sorted!&quot; which is not very helpful. Hence, we are planning to tell the user that the list is empty and that the operation cannot be performed.
+
+7. Improve the presets bar feature to be more comprehensive and clear
+
+   - Currently, the presets bar feature only accommodates for the commands: `add`, `edit`, `delete`, `setP` and `showP`.
+   - In the future, we plan to add more presets buttons for all 16 commands in the application.
+   - Furthermore, even though there's `clear` command, the button &quot;clear&quot; removes all text in the command box, making
+     it ambiguous. We plan to change this in a future iteration like a trash can icon.
+
+8. Improve the filter and sort command formats
+
+   - Currently, the filter and sort commands do not have a strict format. For example, if the user enters a filter command
+     with at least one valid metric and valid metric value, the filter command will still be executed successfully. We plan
+     to come up with a stricter filter and sort format in the future to make it more user-friendly.
+
+9. Improve the best match feature to be more flexible
+   - Currently, the best match feature gives equal weightage to all characteristics: `Income`, `Age`, `Height` and `Horoscope`
+   - To better suit the user preferences, we plan to make the weightage customizable, so users can change the weightage for each characteristic
+
+[Scroll back to _Table of Contents_](#table-of-contents)
+</date></div> <nav id="page-nav" data-v-e6005420><div class="nav-component slim-scroll" data-v-e6005420><nav id="mb-page-nav" class="nav nav-pills flex-column my-0 small no-flex-wrap" data-v-e6005420><a class="nav-link py-1" href="#lovebook-developer-guide" data-v-e6005420>LoveBook Developer Guide‎</a> <nav class="nav nav-pills flex-column my-0 nested no-flex-wrap" data-v-e6005420><a class="nav-link py-1" href="#overview" data-v-e6005420>Overview‎</a> <a class="nav-link py-1" href="#acknowledgements" data-v-e6005420>Acknowledgements‎</a> <a class="nav-link py-1" href="#table-of-contents" data-v-e6005420>Table of Contents‎</a> <a class="nav-link py-1" href="#setting-up-getting-started" data-v-e6005420>Setting up, getting started‎</a> <a class="nav-link py-1" href="#design" data-v-e6005420>Design‎</a> <nav class="nav nav-pills flex-column my-0 nested no-flex-wrap" data-v-e6005420><a class="nav-link py-1" href="#architecture" data-v-e6005420>Architecture‎</a></nav></nav> <!----></nav></div> <!----></nav> <div aria-hidden="true" class="scroll-top-button fa-lg d-print-none" style="display:none;bottom:2%;right:2%;position:fixed;"><i class="fas fa-arrow-circle-up"></i></div></div> <footer><div class="text-center"><small>[<span><strong>Powered by</strong></span> <img src="https://markbind.org/favicon.ico" width="30"> <a href="https://markbind.org/">MarkBind 5.1.0</a>, generated on Tue, 14 Nov 2023, 11:11:01 GMT+8]</small></div></footer></div>
 </body><script src="/tp/markbind/js/bootstrap-utility.min.js"></script>
 <script>
   MarkBind.setupWithSearch()
